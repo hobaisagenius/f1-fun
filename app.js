@@ -540,22 +540,20 @@ sectionChoreo();
  }).observe(pull,{attributes:true,attributeFilter:['class']});
 })();
 
-/* V11 MASTER — restrained cinematic choreography */
+/* V12 — playful section choreography */
 (function(){
   const root=document.getElementById('app');
   if(!root)return;
-  const arm=()=>{
+
+  function arm(){
     requestAnimationFrame(()=>{
-      root.querySelectorAll('.team-card,.driver-list-card,.driver-card,.legend-card,.archive-card,.team-option-card')
+      root.querySelectorAll('.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card,.record-card,.champion-row')
       .forEach((el,i)=>{
-        el.animate(
-          [{opacity:0,transform:'translate3d(0,14px,0)'},
-           {opacity:1,transform:'translate3d(0,0,0)'}],
-          {duration:560,delay:Math.min(i,8)*14,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'}
-        );
+        el.classList.add('v12-enter');
+        el.style.setProperty('--v12-i', Math.min(i,10));
       });
     });
-  };
+  }
   new MutationObserver(arm).observe(root,{childList:true,subtree:false});
   arm();
 })();
