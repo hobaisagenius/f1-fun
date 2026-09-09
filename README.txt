@@ -45,3 +45,14 @@ V10.4 FERRARI CREST CLEANUP
 - Reduced crest size on cards and team hero so it feels integrated instead of oversized.
 - Added multiply blending on Ferrari red to visually suppress the JPG background edge.
 - Kept all V10.3 routing, driver-image, sound, Timing Mode, transition and universal fixes.
+
+V10.5 CLEANEST V10
+- Rebuilt Ferrari shield as a local transparent asset so the red plate/background is gone.
+- Fixed Teams heading clipping beneath the fixed header.
+- Re-proportioned team cards and car stages.
+- Reworked driver cards so portrait framing starts at the top and names stay controlled.
+- Compact 3-column Legends layout with no giant empty spaces.
+- Standardized Archive card dimensions.
+- Moved Race Mode HUD to bottom-right so it stops covering card copy.
+- Cleaned team-detail option card proportions.
+- Retained V10 animations, sound, Timing Mode, routing and universal phone/tablet support.
