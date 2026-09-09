@@ -575,3 +575,170 @@ body{
  @keyframes actualCarPass{from{left:-82vw}to{left:106vw}}
 }
 @media(prefers-reduced-motion:reduce){.race-swipe{display:none!important}}
+
+/* =========================================================
+   CREATIVE RACE V3 — premium page-pull transitions + playful UI
+   ========================================================= */
+:root{
+ --race-red:#e10600;
+ --race-black:#070707;
+ --race-white:#fff;
+ --race-yellow:#ffd83d;
+ --race-blue:#27a6ff;
+}
+body{overflow-x:hidden}
+#pagePullShell{
+  min-height:100vh;
+  transform:translateX(0);
+  will-change:transform,filter;
+}
+#pagePullShell.page-pull-out{
+  animation:pagePullOut .72s cubic-bezier(.18,.72,.18,1) both;
+}
+#pagePullShell.page-pull-in{
+  animation:pagePullIn .66s cubic-bezier(.2,.8,.18,1) both;
+}
+@keyframes pagePullOut{
+  0%{transform:translateX(0);filter:brightness(1)}
+  58%{transform:translateX(7vw);filter:brightness(.98)}
+  100%{transform:translateX(102vw);filter:brightness(.96)}
+}
+@keyframes pagePullIn{
+  0%{transform:translateX(-102vw)}
+  100%{transform:translateX(0)}
+}
+
+/* Transparent overlay only: car/wheel + a thin page-grab edge */
+.race-pull{
+  position:fixed;inset:0;z-index:9999;pointer-events:none;
+  visibility:hidden;background:transparent!important;overflow:hidden;
+}
+.race-pull.car-mode,.race-pull.wheel-mode{visibility:visible}
+.race-pull-edge{
+  position:absolute;top:0;bottom:0;left:-12px;width:12px;
+  background:linear-gradient(90deg,rgba(0,0,0,.0),rgba(0,0,0,.16));
+  box-shadow:18px 0 40px rgba(0,0,0,.09);
+}
+.car-mode .race-pull-edge{animation:edgePull 1.04s cubic-bezier(.17,.75,.18,1)}
+.wheel-mode .race-pull-edge{animation:edgePull 1.04s cubic-bezier(.17,.75,.18,1)}
+@keyframes edgePull{
+  from{left:-12px}
+  to{left:calc(100vw + 12px)}
+}
+
+/* Premium car: larger, slower, more weight */
+.race-pull-car{
+  position:absolute;
+  left:-48vw;
+  top:52%;
+  width:min(760px,52vw);
+  height:260px;
+  translate:0 -50%;
+  filter:drop-shadow(0 28px 22px rgba(0,0,0,.34));
+  will-change:left,transform;
+}
+.race-pull-car img{
+  width:100%;height:100%;object-fit:contain;
+}
+.car-mode .race-pull-car{
+  animation:premiumCarPull 1.02s cubic-bezier(.14,.72,.14,1) both;
+}
+@keyframes premiumCarPull{
+  0%{left:-50vw;transform:translateY(3px) scale(.96)}
+  42%{transform:translateY(-6px) scale(1)}
+  72%{transform:translateY(-2px) scale(1.015)}
+  100%{left:104vw;transform:translateY(2px) scale(1)}
+}
+
+/* Wheel: intentionally huge and dramatic */
+.race-pull-wheel{
+  display:none;
+  position:absolute;
+  left:-34vw;
+  top:52%;
+  width:min(360px,28vw);
+  aspect-ratio:1;
+  translate:0 -50%;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%,#191919 0 15%,#aaa 15% 18%,#262626 18% 31%,#070707 31% 67%,#1b1b1b 67% 78%,#050505 78%);
+  box-shadow:0 30px 28px rgba(0,0,0,.28),inset 0 0 0 8px #2b2b2b;
+}
+.race-pull-wheel .hub{
+  position:absolute;inset:38%;border-radius:50%;background:#b7b7b7;box-shadow:inset 0 0 0 8px #333;
+}
+.race-pull-wheel i{
+  position:absolute;left:49%;top:18%;width:2%;height:32%;background:#8f8f8f;transform-origin:50% 100%;
+}
+.race-pull-wheel i:nth-of-type(1){transform:rotate(0deg)}
+.race-pull-wheel i:nth-of-type(2){transform:rotate(72deg)}
+.race-pull-wheel i:nth-of-type(3){transform:rotate(144deg)}
+.race-pull-wheel i:nth-of-type(4){transform:rotate(216deg)}
+.race-pull-wheel i:nth-of-type(5){transform:rotate(288deg)}
+.wheel-mode .race-pull-car{display:none}
+.wheel-mode .race-pull-wheel{
+  display:block;
+  animation:premiumWheelPull 1.04s cubic-bezier(.13,.72,.15,1) both;
+}
+@keyframes premiumWheelPull{
+  0%{left:-34vw;transform:rotate(0deg) scale(.92)}
+  48%{transform:rotate(560deg) scale(1.03) translateY(-5px)}
+  100%{left:104vw;transform:rotate(1260deg) scale(1)}
+}
+
+/* More playful visual language */
+.fun-hud{
+  position:fixed;z-index:90;left:18px;bottom:max(18px,env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:7px;background:#fff;color:#000;
+  border:2px solid #000;padding:8px 11px;box-shadow:5px 5px 0 var(--race-red);
+  font-size:8px;letter-spacing:.14em;font-weight:800;
+}
+.fun-hud b{font-size:16px;letter-spacing:0;font-style:italic}
+.hud-dot{width:8px;height:8px;border-radius:50%;background:var(--race-red);box-shadow:0 0 0 3px #ffd8d6}
+
+.menu-link:nth-child(3n+1):hover{background:var(--race-yellow)!important;color:#000!important}
+.menu-link:nth-child(3n+2):hover{background:var(--race-blue)!important;color:#000!important}
+.menu-link:nth-child(3n+3):hover{background:#000!important;color:#fff!important}
+
+.team-card:nth-child(4n+1),.archive-card:nth-child(4n+1){transform:rotate(-.3deg)}
+.team-card:nth-child(4n+2),.archive-card:nth-child(4n+2){transform:rotate(.25deg)}
+.team-card:nth-child(4n+3),.archive-card:nth-child(4n+3){transform:rotate(-.12deg)}
+.team-card:nth-child(4n),.archive-card:nth-child(4n){transform:rotate(.18deg)}
+.team-card:hover,.archive-card:hover{transform:translate(-5px,-5px) rotate(0)!important}
+
+.fun-press{animation:funPress .36s cubic-bezier(.2,.85,.2,1)}
+@keyframes funPress{
+  0%{transform:scale(1)}
+  40%{transform:scale(.965) rotate(-.25deg)}
+  75%{transform:scale(1.015) rotate(.18deg)}
+  100%{transform:scale(1)}
+}
+
+.hero-bottom button:after{
+  content:"  GO!";color:var(--race-yellow);font-weight:900;
+}
+.team-arrow,.card-arrow{
+  transition:transform .28s ease,box-shadow .28s ease!important;
+}
+.team-arrow:hover,.card-arrow:hover{
+  transform:translate(3px,-3px) rotate(8deg)!important;
+  box-shadow:-4px 4px 0 var(--race-yellow)!important;
+}
+
+@media(max-width:700px){
+  .race-pull-car{width:88vw;height:190px;left:-92vw}
+  @keyframes premiumCarPull{
+    0%{left:-92vw;transform:scale(.94)}
+    100%{left:104vw;transform:scale(1)}
+  }
+  .race-pull-wheel{width:58vw;left:-65vw}
+  @keyframes premiumWheelPull{
+    from{left:-65vw;transform:rotate(0) scale(.92)}
+    to{left:105vw;transform:rotate(1260deg) scale(1)}
+  }
+  .fun-hud{left:12px;bottom:max(12px,env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){
+  #pagePullShell{animation:none!important;transform:none!important}
+  .race-pull{display:none!important}
+}

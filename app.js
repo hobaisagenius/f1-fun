@@ -43,33 +43,55 @@ function carFallbackMarkup(team){
   return `<svg class="team-car-fallback" viewBox="0 0 900 240" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.48)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M95 169h115l55-44 181-21 83 11 82 38h125"/><path d="M278 125l61-50h116l65 42"/><path d="M516 117l83 13 81 39"/><circle cx="222" cy="169" r="48"/><circle cx="654" cy="169" r="48"/></g><path d="M325 107h150l48 18-76 17H286z" fill="rgba(255,255,255,.12)"/><text x="450" y="222" text-anchor="middle" fill="rgba(255,255,255,.28)" font-family="DM Sans, sans-serif" font-size="18" letter-spacing="7">2026 CHALLENGER</text></svg>`;
 }
 let raceNavBusy=false;
-function go(route,id){
+
+let funNavBusy=false;
+let funLapCount=1;
+function performRoute(route,id){
   const target=id?`${route}/${id}`:route;
-  if(raceNavBusy){ location.hash=target; return; }
-  const overlay=document.getElementById('raceSwipe');
-  const car=document.getElementById('raceSwipeCar');
+  if(location.hash.replace(/^#/,'')!==target) location.hash=target;
+  render();
+  window.scrollTo({top:0,left:0,behavior:'instant'});
+}
+function go(route,id){
+  if(funNavBusy) return;
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const layer=document.getElementById('racePull');
+  const shell=document.getElementById('pagePullShell');
+  const car=document.getElementById('racePullCar');
+  const useWheel=Math.random()<.20;
   const currentTeam=(id&&TEAMS[id])?id:(DRIVERS[id]?.team||null);
-  const useWheel=Math.random()<.22;
+
   if(car){
-    const team=currentTeam||['Ferrari','McLaren','Mercedes','Red Bull Racing'][Math.floor(Math.random()*4)];
+    const candidates=['Ferrari','McLaren','Mercedes','Red Bull Racing'];
+    const team=currentTeam||candidates[Math.floor(Math.random()*candidates.length)];
     car.src=teamCar(team);
   }
-  if(!overlay || matchMedia('(prefers-reduced-motion: reduce)').matches){
-    location.hash=target;
-    setTimeout(()=>render(),0);
+
+  if(!layer||!shell||reduce){
+    performRoute(route,id);
     return;
   }
-  raceNavBusy=true;
-  overlay.className='race-swipe '+(useWheel?'wheel-pass':'car-pass');
+
+  funNavBusy=true;
+  layer.className='race-pull '+(useWheel?'wheel-mode':'car-mode');
+  shell.classList.remove('page-pull-out','page-pull-in');
+  void layer.offsetWidth;
+  shell.classList.add('page-pull-out');
+
   setTimeout(()=>{
-    location.hash=target;
-    render();
-    window.scrollTo({top:0,left:0,behavior:'instant'});
-  },360);
+    performRoute(route,id);
+    shell.classList.remove('page-pull-out');
+    shell.classList.add('page-pull-in');
+    funLapCount++;
+    const lap=document.getElementById('funLap');
+    if(lap) lap.textContent=String(funLapCount).padStart(2,'0');
+  },520);
+
   setTimeout(()=>{
-    overlay.className='race-swipe';
-    raceNavBusy=false;
-  },920);
+    shell.classList.remove('page-pull-in');
+    layer.className='race-pull';
+    funNavBusy=false;
+  },1180);
 }
 function openMenu(){menuButton.classList.add('open');topMenu.classList.add('open');menuButton.setAttribute('aria-expanded','true')}
 function closeMenu(){menuButton.classList.remove('open');topMenu.classList.remove('open');menuButton.setAttribute('aria-expanded','false')}
@@ -374,3 +396,12 @@ try{
 }catch(e){
   /* No action needed: CSS fallback dismisses the intro. */
 }
+
+window.addEventListener('hashchange',render);
+
+document.addEventListener('pointerdown',e=>{
+  const x=e.target.closest('button,.team-card,.driver-card,.archive-card');
+  if(!x)return;
+  x.classList.remove('fun-press');void x.offsetWidth;x.classList.add('fun-press');
+  setTimeout(()=>x.classList.remove('fun-press'),380);
+});

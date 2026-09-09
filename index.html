@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=race2">
+<link rel="stylesheet" href="style.css?v=race3">
 </head>
 <body>
 <div class="noise"></div>
@@ -48,7 +48,15 @@
     <div class="intro-sub">FORMULA 1 · 1950—2026</div>
   </div>
 </div>
-<main id="app"></main>
+<div id="pagePullShell"><main id="app"></main></div>
+<div id="racePull" class="race-pull" aria-hidden="true">
+  <div class="race-pull-car"><img id="racePullCar" alt=""></div>
+  <div class="race-pull-wheel"><span class="hub"></span><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="race-pull-edge"></div>
+</div>
+<div class="fun-hud">
+  <span class="hud-dot"></span><span>RACE MODE</span><b id="funLap">01</b>
+</div>
 <div id="raceSwipe" class="race-swipe" aria-hidden="true">
   <div class="race-swipe-car"><img id="raceSwipeCar" alt=""></div>
   <div class="race-swipe-wheel"><span></span></div>
@@ -56,6 +64,6 @@
 
 <div class="transition" id="transition"></div>
 <div class="toast" id="toast"></div>
-<script src="app.js?v=race2"></script>
+<script src="app.js?v=race3"></script>
 </body>
 </html>

@@ -1,12 +1,16 @@
-THE GRID — CREATIVE RACE V2
-A separate remix of the locked private v4+ Universal site.
+THE GRID — CREATIVE RACE V3
 
-Direction:
-- Main/archive pages: red, white and black.
-- Team/detail pages retain team-specific identity using each constructor's main color.
-- The editorial/museum feeling is intentionally replaced with bold motorsport graphics.
-- Page transitions have NO transition background: an actual car image already used by the private site crosses over the live page, or a racing wheel rolls across.
-- Navigation was rebuilt so the route changes during the pass and explicitly renders the destination.
+This version fixes navigation and rebuilds the transitions around a premium page-pull concept.
+
+- Buttons now route and render correctly.
+- The car/wheel transition has no background.
+- The current page physically gets pulled off-screen with the car/wheel.
+- The next page slides in underneath.
+- Car motion is slower, smoother and heavier.
+- Wheel transition is intentionally much larger.
+- Main pages stay red/white/black.
+- Team pages retain team-specific colors.
+- More playful hover, press, HUD and menu behavior.
 - One responsive build for desktop, tablet, iPhone and Android.
 
-The original v4+ Universal build is untouched.
+The private v4+ Universal master remains untouched.
