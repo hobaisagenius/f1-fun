@@ -24,3 +24,12 @@ V11+ CORRECTED
 - Added only lightweight whole-site playful/cinematic polish; no driver-page redesign.
 - Ferrari kept as simple white shield.
 - Universal desktop/tablet/iPhone/Android behavior preserved.
+
+V11 PERFECT
+- Driver index cards re-proportioned to the clean V10 face-card composition.
+- Removed the oversized torso crop from the previous correction.
+- Driver dossier now uses a sticky full-height left visual so the full-body driver remains visible while career stats scroll.
+- Narrower left visual panel makes the full-body portrait occupy the area more naturally without cropping the head or feet.
+- No new stickers, floating labels, or unusual decorative objects were added.
+- Motion is restrained: slower page choreography, quick responsive hover feedback, lightweight implementation.
+- Desktop, tablet, iOS and Android responsive rules included.

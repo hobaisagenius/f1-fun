@@ -540,34 +540,21 @@ sectionChoreo();
  }).observe(pull,{attributes:true,attributeFilter:['class']});
 })();
 
-/* V11+ corrected — site-wide lightweight premium/playful motion */
+/* V11 PERFECT — restrained page choreography */
 (function(){
-  const root=document.getElementById('app');
-  if(!root)return;
-  function reveal(){
+  const app=document.getElementById('app');
+  if(!app)return;
+  const apply=()=>{
     requestAnimationFrame(()=>{
-      root.querySelectorAll('.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card,.stat,.meta').forEach((el,i)=>{
-        el.classList.add('v11c-reveal');
-        el.style.setProperty('--v11c-i',Math.min(i,10));
-      });
+      [...app.querySelectorAll('.team-card,.driver-list-card,.driver-card,.legend-card,.archive-card,.team-options button')]
+        .forEach((el,i)=>{
+          el.animate(
+            [{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'translateY(0)'}],
+            {duration:520,delay:Math.min(i,8)*18,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'}
+          );
+        });
     });
-  }
-  new MutationObserver(reveal).observe(root,{childList:true,subtree:false});
-  reveal();
-
-  if(matchMedia('(hover:hover) and (pointer:fine)').matches){
-    document.addEventListener('pointermove',e=>{
-      const el=e.target.closest('.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card');
-      if(!el)return;
-      const r=el.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-.5;
-      const y=(e.clientY-r.top)/r.height-.5;
-      el.style.setProperty('--rx',`${(-y*.55).toFixed(2)}deg`);
-      el.style.setProperty('--ry',`${(x*.8).toFixed(2)}deg`);
-    },{passive:true});
-    document.addEventListener('pointerout',e=>{
-      const el=e.target.closest?.('.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card');
-      if(el){el.style.removeProperty('--rx');el.style.removeProperty('--ry')}
-    });
-  }
+  };
+  new MutationObserver(apply).observe(app,{childList:true});
+  apply();
 })();
