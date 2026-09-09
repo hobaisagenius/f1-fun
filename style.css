@@ -1458,3 +1458,38 @@ img.asset-failed{opacity:0!important}
  .driver-list-name,.driver-card-name{font-size:clamp(36px,12vw,62px)!important;max-width:calc(100% - 24px)!important}
  .driver-list-photo img,.driver-card img{object-position:50% 18%!important}
 }
+
+/* V10.3 — Ferrari actual shield/badge instead of wordmark */
+.team-logo-wrap img[alt="Ferrari logo"]{
+  width:72px!important;
+  height:88px!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:none!important;
+  border-radius:8px;
+  clip-path:polygon(12% 0,88% 0,100% 18%,88% 82%,50% 100%,12% 82%,0 18%);
+}
+body[data-detail="Ferrari"] .team-hero-logo,
+body[data-detail="ferrari"] .team-hero-logo{
+  width:94px!important;
+  height:116px!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:none!important;
+  opacity:1!important;
+  border-radius:10px;
+  clip-path:polygon(12% 0,88% 0,100% 18%,88% 82%,50% 100%,12% 82%,0 18%);
+}
+@media(max-width:700px){
+  .team-logo-wrap img[alt="Ferrari logo"]{
+    width:58px!important;height:72px!important;
+  }
+  body[data-detail="Ferrari"] .team-hero-logo,
+  body[data-detail="ferrari"] .team-hero-logo{
+    width:76px!important;height:94px!important;
+  }
+}

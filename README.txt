@@ -32,3 +32,9 @@ V10.2 SCREENSHOT + CURRENT-GRID AUDIT
 - Added graceful visual fallbacks for future broken remote image URLs.
 - Corrected current 2026 Red Bull/Racing Bulls driver pairing where stale records were found.
 - Preserved V10's routing, Race Mode, Timing Mode, sound, transitions and universal responsive system.
+
+V10.3 FERRARI LOGO PATCH
+- Replaced the Ferrari wordmark with a Ferrari shield/badge image.
+- Applied globally through the shared Ferrari logo mapping.
+- Ferrari now uses shield proportions on the Teams grid and Ferrari detail page.
+- Kept all V10.2 routing, animations, sound, Timing Mode, driver photo fixes and universal responsive behavior.
