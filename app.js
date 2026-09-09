@@ -42,16 +42,34 @@ function carFallbackMarkup(team){
   const c=TEAM_COLORS[team]||'#333';
   return `<svg class="team-car-fallback" viewBox="0 0 900 240" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.48)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M95 169h115l55-44 181-21 83 11 82 38h125"/><path d="M278 125l61-50h116l65 42"/><path d="M516 117l83 13 81 39"/><circle cx="222" cy="169" r="48"/><circle cx="654" cy="169" r="48"/></g><path d="M325 107h150l48 18-76 17H286z" fill="rgba(255,255,255,.12)"/><text x="450" y="222" text-anchor="middle" fill="rgba(255,255,255,.28)" font-family="DM Sans, sans-serif" font-size="18" letter-spacing="7">2026 CHALLENGER</text></svg>`;
 }
-let transitionBusy=false,lapCount=1;
+let raceNavBusy=false;
 function go(route,id){
- if(transitionBusy)return;
- const labels={home:'HOME STRAIGHT',teams:'CONSTRUCTORS',driver:'DRIVER PROFILE',team:'TEAM GARAGE',hall:'HALL OF FAME',rivalries:'RIVALRIES',cars:'ICONIC CARS',eras:'ERAS',records:'RECORDS',compare:'COMPARISON'};
- const layer=document.getElementById('raceTransition'),label=document.getElementById('transitionLabel');
- if(!layer||matchMedia('(prefers-reduced-motion: reduce)').matches){location.hash=id?`${route}/${id}`:route;return}
- transitionBusy=true;label.textContent=labels[route]||String(route).toUpperCase();layer.className='race-transition';
- void layer.offsetWidth;layer.classList.add(Math.random()>.28?'run':'wheel-run');
- setTimeout(()=>{location.hash=id?`${route}/${id}`:route;lapCount++;const n=document.getElementById('lapNumber');if(n)n.textContent=String(lapCount).padStart(2,'0')},600);
- setTimeout(()=>{layer.className='race-transition';transitionBusy=false},1400);
+  const target=id?`${route}/${id}`:route;
+  if(raceNavBusy){ location.hash=target; return; }
+  const overlay=document.getElementById('raceSwipe');
+  const car=document.getElementById('raceSwipeCar');
+  const currentTeam=(id&&TEAMS[id])?id:(DRIVERS[id]?.team||null);
+  const useWheel=Math.random()<.22;
+  if(car){
+    const team=currentTeam||['Ferrari','McLaren','Mercedes','Red Bull Racing'][Math.floor(Math.random()*4)];
+    car.src=teamCar(team);
+  }
+  if(!overlay || matchMedia('(prefers-reduced-motion: reduce)').matches){
+    location.hash=target;
+    setTimeout(()=>render(),0);
+    return;
+  }
+  raceNavBusy=true;
+  overlay.className='race-swipe '+(useWheel?'wheel-pass':'car-pass');
+  setTimeout(()=>{
+    location.hash=target;
+    render();
+    window.scrollTo({top:0,left:0,behavior:'instant'});
+  },360);
+  setTimeout(()=>{
+    overlay.className='race-swipe';
+    raceNavBusy=false;
+  },920);
 }
 function openMenu(){menuButton.classList.add('open');topMenu.classList.add('open');menuButton.setAttribute('aria-expanded','true')}
 function closeMenu(){menuButton.classList.remove('open');topMenu.classList.remove('open');menuButton.setAttribute('aria-expanded','false')}
@@ -356,5 +374,3 @@ try{
 }catch(e){
   /* No action needed: CSS fallback dismisses the intro. */
 }
-
-document.addEventListener('click',e=>{const x=e.target.closest('.team-card,.driver-card,.archive-card,.menu-link');if(x){x.classList.remove('impact');void x.offsetWidth;x.classList.add('impact');setTimeout(()=>x.classList.remove('impact'),430)}});

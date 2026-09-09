@@ -1,3 +1,12 @@
-THE GRID — PRIVATE FUN V1
+THE GRID — CREATIVE RACE V2
+A separate remix of the locked private v4+ Universal site.
 
-A separate creative remix of the locked v4+ Universal build. Same content and responsive base, with racing-car / loose-wheel page transitions, lap counter, playful cards and micro-interactions. The original v4+ Universal build is unchanged.
+Direction:
+- Main/archive pages: red, white and black.
+- Team/detail pages retain team-specific identity using each constructor's main color.
+- The editorial/museum feeling is intentionally replaced with bold motorsport graphics.
+- Page transitions have NO transition background: an actual car image already used by the private site crosses over the live page, or a racing wheel rolls across.
+- Navigation was rebuilt so the route changes during the pass and explicitly renders the destination.
+- One responsive build for desktop, tablet, iPhone and Android.
+
+The original v4+ Universal build is untouched.

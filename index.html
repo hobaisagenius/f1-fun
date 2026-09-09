@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=fun1">
+<link rel="stylesheet" href="style.css?v=race2">
 </head>
 <body>
 <div class="noise"></div>
@@ -48,10 +48,14 @@
     <div class="intro-sub">FORMULA 1 · 1950—2026</div>
   </div>
 </div>
-<main id="app"></main><div id="raceTransition" class="race-transition"><div class="race-lights"><i></i><i></i><i></i><i></i><i></i></div><div class="race-track"><div class="speed-lines"></div><div class="transition-car"><span class="front-wing"></span><span class="nose"></span><span class="cockpit"></span><span class="rear-body"></span><span class="rear-wing"></span><i class="wheel wheel-a"></i><i class="wheel wheel-b"></i></div><div class="transition-wheel"></div></div><div class="transition-copy"><small>NEXT SECTOR</small><strong id="transitionLabel">THE GRID</strong></div></div><div class="lap-chip"><span>LAP</span><b id="lapNumber">01</b></div>
+<main id="app"></main>
+<div id="raceSwipe" class="race-swipe" aria-hidden="true">
+  <div class="race-swipe-car"><img id="raceSwipeCar" alt=""></div>
+  <div class="race-swipe-wheel"><span></span></div>
+</div>
 
 <div class="transition" id="transition"></div>
 <div class="toast" id="toast"></div>
-<script src="app.js?v=fun1"></script>
+<script src="app.js?v=race2"></script>
 </body>
 </html>
