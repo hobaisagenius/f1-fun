@@ -17,12 +17,22 @@ ADDED / IMPROVED
 Sound remains OFF by default.
 Timing Mode is intentionally hidden on narrow phones to keep the HUD uncluttered.
 
-V11 ABSOLUTE
-- Rebased on V10 to restore the exact face-card driver concept.
-- Driver cards use V10 top-anchored portrait photography with corrected brightness and text proportions.
-- Driver detail is now a large sticky full-body left panel; the image is widened within the panel without scaling/cropping the head or feet.
-- Career data scrolls on the right while the driver remains visually present.
-- Ferrari intentionally uses the simple white shield.
-- Site-wide motion is restrained and lightweight: smooth card lifts, clean menu response, cinematic car/wheel page pulls.
-- No unusual new stickers, floating labels or decorative clutter added.
-- Desktop, tablet, iPhone, Android and landscape responsive rules included.
+V11 MASTER
+- Removed accidental black/white checker tape from cards and page headings.
+- Preserved only useful racing chips (FULL SEND / BOX BOX / PUSH NOW).
+- Increased grid gaps and removed offset shadows to stop team/driver cards visually colliding.
+- Rebalanced team cards, car scale, logos, names and spacing.
+- Restored clean V10-style driver face cards with controlled text sizing and no overlap.
+- Driver profile uses a narrower sticky 38% left panel so the full-body driver visually fills the panel better without cutting the head or feet.
+- Career information scrolls independently on the right while driver remains visible.
+- Simplified playful effects: subtle lift, clean menu motion, cinematic page pulls; no unnecessary floating decorations.
+- Ferrari uses the simple white shield treatment.
+- Desktop, tablet, iPhone, Android and landscape rules preserved.
+
+V11 MASTER+
+- Borrowed the restraint and spacing discipline of the minimal/private site without copying its aesthetic.
+- Cleaner hierarchy, calmer typography, softer borders and spacing.
+- Team/driver cards retain playful racing identity but use less clutter and stronger proportions.
+- Driver profile layout remains full-body left + data right, with calmer editorial spacing.
+- Race Mode HUD completely redesigned to be playful again: live dot, lap counter, accent rails, status chip, stronger sound toggle.
+- No unnecessary floating stickers or odd decorations added.
