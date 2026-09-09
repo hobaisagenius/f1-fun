@@ -19,3 +19,5 @@ V4 ROUTER FIX
 The v4+ base is function-routed, not hash-routed. The creative transition now calls the
 real page function at the midpoint of the car/wheel pull. This fixes the issue where
 the animation played but the destination never appeared.
+
+V5: heavy signature transition only on major sections; quick playful motion on detail navigation; larger/heavier car and wheel; stronger team-color identity and playful UI.

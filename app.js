@@ -74,46 +74,25 @@ function performRoute(route,id){
   }
   window.scrollTo({top:0,left:0,behavior:'instant'});
 }
+const BIG_ROUTES=new Set(['home','teams','hall','legends','rivalries','cars','eras','races','historic-teams','moments','champions','records']);
+let spiceIndex=0;
 function go(route,id){
-  if(funNavBusy) return;
-  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const layer=document.getElementById('racePull');
-  const shell=document.getElementById('pagePullShell');
-  const car=document.getElementById('racePullCar');
-  const useWheel=Math.random()<.20;
-  const currentTeam=(id&&TEAMS[id])?id:(DRIVERS[id]?.team||null);
-
-  if(car){
-    const candidates=['Ferrari','McLaren','Mercedes','Red Bull Racing'];
-    const team=currentTeam||candidates[Math.floor(Math.random()*candidates.length)];
-    car.src=teamCar(team);
-  }
-
-  if(!layer||!shell||reduce){
-    performRoute(route,id);
-    return;
-  }
-
-  funNavBusy=true;
-  layer.className='race-pull '+(useWheel?'wheel-mode':'car-mode');
-  shell.classList.remove('page-pull-out','page-pull-in');
-  void layer.offsetWidth;
-  shell.classList.add('page-pull-out');
-
-  setTimeout(()=>{
-    performRoute(route,id);
-    shell.classList.remove('page-pull-out');
-    shell.classList.add('page-pull-in');
-    funLapCount++;
-    const lap=document.getElementById('funLap');
-    if(lap) lap.textContent=String(funLapCount).padStart(2,'0');
-  },520);
-
-  setTimeout(()=>{
-    shell.classList.remove('page-pull-in');
-    layer.className='race-pull';
-    funNavBusy=false;
-  },1180);
+ if(funNavBusy)return;
+ const layer=document.getElementById('racePull'),shell=document.getElementById('pagePullShell'),car=document.getElementById('racePullCar');
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,isBig=BIG_ROUTES.has(route);
+ if(!layer||!shell||reduce){performRoute(route,id);return}
+ if(!isBig){
+  funNavBusy=true;shell.className='quick-pop';
+  setTimeout(()=>{performRoute(route,id);shell.className='quick-pop-in'},150);
+  setTimeout(()=>{shell.className='';funNavBusy=false},500);return;
+ }
+ funNavBusy=true;spiceIndex++;
+ const useWheel=spiceIndex%4===0,currentTeam=(id&&TEAMS[id])?id:(DRIVERS[id]?.team||null);
+ if(car){const choices=['Ferrari','McLaren','Mercedes','Red Bull Racing'];car.src=teamCar(currentTeam||choices[spiceIndex%choices.length])}
+ layer.className='race-pull heavy-mode '+(useWheel?'wheel-mode':'car-mode');
+ shell.className='page-pull-out';
+ setTimeout(()=>{performRoute(route,id);shell.className='page-pull-in';funLapCount++;const n=document.getElementById('funLap');if(n)n.textContent=String(funLapCount).padStart(2,'0')},760);
+ setTimeout(()=>{shell.className='';layer.className='race-pull';funNavBusy=false},1640);
 }
 function openMenu(){menuButton.classList.add('open');topMenu.classList.add('open');menuButton.setAttribute('aria-expanded','true')}
 function closeMenu(){menuButton.classList.remove('open');topMenu.classList.remove('open');menuButton.setAttribute('aria-expanded','false')}
@@ -134,7 +113,7 @@ function teamsPage(){
 
 function teamPage(team){
  const ids=TEAMS[team], s=TEAM_STATS[team];
- app.innerHTML=`<section class="page team-page"><button class="back" id="backTeams">← All teams</button><div class="team-hero"><div><div class="page-kicker">TEAM / 2026</div><div class="team-title-row"><img class="team-hero-logo" src="${teamLogo(team)}" onerror="this.style.display='none'"><h1 class="page-title">${team}</h1></div><p class="team-lede">${s.history}</p></div><div class="team-identity"><span>FIRST ENTRY</span><strong>${s.first}</strong><span>BASE</span><strong>${s.base}</strong></div></div>
+ app.innerHTML=`<section class="page team-page" style="--team-accent:${TEAM_COLORS[team]}"><button class="back" id="backTeams">← All teams</button><div class="team-hero"><div><div class="page-kicker">TEAM / 2026</div><div class="team-title-row"><img class="team-hero-logo" src="${teamLogo(team)}" onerror="this.style.display='none'"><h1 class="page-title">${team}</h1></div><p class="team-lede">${s.history}</p></div><div class="team-identity"><span>FIRST ENTRY</span><strong>${s.first}</strong><span>BASE</span><strong>${s.base}</strong></div></div>
  <div class="team-options"><button data-view="history"><b>01</b><span>Team history</span><small>Origins · titles · legacy ↗︎</small></button><button data-view="drivers"><b>02</b><span>Drivers</span><small>${ids.map(x=>dBy(x).name).join(' · ')} ↗︎</small></button><button data-view="season"><b>03</b><span>2026 season</span><small>Wins · podiums · poles · points ↗︎</small></button></div>
  <div id="teamDetail"></div></section>`;
  document.getElementById('backTeams').onclick=()=>go('teams');
@@ -427,3 +406,8 @@ document.addEventListener('pointerdown',e=>{
   x.classList.remove('fun-press');void x.offsetWidth;x.classList.add('fun-press');
   setTimeout(()=>x.classList.remove('fun-press'),380);
 });
+
+if(matchMedia('(pointer:fine)').matches){
+ document.addEventListener('pointermove',e=>{const x=e.target.closest('.team-card,.driver-card,.archive-card');if(!x)return;const r=x.getBoundingClientRect(),a=(e.clientX-r.left)/r.width-.5,b=(e.clientY-r.top)/r.height-.5;x.style.setProperty('--rx',`${-b*3}deg`);x.style.setProperty('--ry',`${a*4}deg`)},{passive:true});
+ document.addEventListener('pointerout',e=>{const x=e.target.closest?.('.team-card,.driver-card,.archive-card');if(x){x.style.removeProperty('--rx');x.style.removeProperty('--ry')}});
+}
