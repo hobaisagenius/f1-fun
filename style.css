@@ -1361,3 +1361,100 @@ body.timing-mode .archive-grid,body.timing-mode .team-grid,body.timing-mode .dri
  .lights-intro{display:none!important}
  .driver-card img,.driver-list-card img{transform:none!important}
 }
+
+/* V10.1 — Ferrari + driver-photo patch */
+.team-logo-wrap img[alt="Ferrari logo"]{
+ width:150px!important;max-width:150px!important;max-height:54px!important;
+ object-fit:contain!important;filter:brightness(0) invert(1)!important
+}
+body[data-detail="Ferrari"] .team-hero-logo,
+body[data-detail="ferrari"] .team-hero-logo{
+ width:150px!important;max-height:62px!important;opacity:1!important;filter:brightness(0)!important
+}
+.driver-card img,.driver-list-photo img{
+ opacity:1!important;mix-blend-mode:normal!important;
+ filter:brightness(.94) contrast(1.05) saturate(.96)!important
+}
+.driver-card:after{
+ background:linear-gradient(180deg,rgba(0,0,0,.01),rgba(0,0,0,.03) 48%,rgba(0,0,0,.68) 100%)!important
+}
+.driver-list-card:after{
+ background:linear-gradient(180deg,rgba(0,0,0,.01),rgba(0,0,0,.02) 50%,rgba(0,0,0,.62) 100%)!important
+}
+.driver-card:hover img,.driver-list-card:hover img{
+ filter:brightness(1) contrast(1.05) saturate(1)!important
+}
+@media(max-width:700px){
+ .team-logo-wrap img[alt="Ferrari logo"]{width:125px!important}
+ body[data-detail="Ferrari"] .team-hero-logo,
+ body[data-detail="ferrari"] .team-hero-logo{width:125px!important}
+}
+
+/* =========================================================
+   V10.2 — SCREENSHOT + DATA AUDIT PATCH
+   ========================================================= */
+
+/* Tiny metadata must stay legible on saturated cards. */
+.team-card .team-drivers,
+.team-card .micro,
+.driver-list-card .driver-meta,
+.driver-card .driver-meta,
+.archive-kicker,.page-kicker,.eyebrow{
+  opacity:.86!important;
+}
+
+/* Ferrari wordmark: no generic shield; keep it crisp and proportionate. */
+.team-logo-wrap img[alt="Ferrari logo"]{
+  width:148px!important;height:auto!important;max-height:48px!important;
+  object-fit:contain!important;object-position:left center!important;
+}
+body[data-detail="Ferrari"] .team-hero-logo,
+body[data-detail="ferrari"] .team-hero-logo{
+  width:158px!important;height:auto!important;object-fit:contain!important;
+}
+
+/* Driver imagery: reveal the actual photography and retain text readability only at bottom. */
+.driver-list-photo{background:#151515!important;overflow:hidden!important}
+.driver-list-photo img,.driver-card img{
+  display:block!important;width:100%!important;height:100%!important;
+  object-fit:cover!important;object-position:50% 22%!important;
+  opacity:1!important;visibility:visible!important;mix-blend-mode:normal!important;
+  filter:brightness(.96) contrast(1.04) saturate(.98)!important;
+}
+.driver-list-card:after,.driver-card:after{
+  pointer-events:none!important;
+  background:linear-gradient(180deg,transparent 0%,transparent 54%,rgba(0,0,0,.14) 68%,rgba(0,0,0,.82) 100%)!important;
+}
+
+/* Long surnames should never collide with the card edge. */
+.driver-list-name,.driver-card-name{
+  max-width:calc(100% - 44px)!important;
+  font-size:clamp(44px,5.1vw,88px)!important;
+  line-height:.88!important;
+  overflow-wrap:normal!important;
+  word-break:keep-all!important;
+}
+
+/* Ferrari hero paragraph was too low-contrast in the screenshot. */
+body[data-detail="Ferrari"] .team-hero-copy,
+body[data-detail="ferrari"] .team-hero-copy,
+body[data-detail="Ferrari"] .team-hero p,
+body[data-detail="ferrari"] .team-hero p{
+  color:rgba(255,255,255,.84)!important;
+}
+
+/* Detail-card subtitles were faint. */
+.team-option-card p,.team-option-card .micro{opacity:.72!important;color:#222!important}
+
+/* Graceful broken-image state: no browser broken-image icon. */
+img.asset-failed{opacity:0!important}
+.asset-fallback{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font:900 italic clamp(22px,4vw,54px)/1 "DM Sans",sans-serif;
+  letter-spacing:-.04em;color:rgba(255,255,255,.18);pointer-events:none
+}
+
+@media(max-width:700px){
+ .driver-list-name,.driver-card-name{font-size:clamp(36px,12vw,62px)!important;max-width:calc(100% - 24px)!important}
+ .driver-list-photo img,.driver-card img{object-position:50% 18%!important}
+}
