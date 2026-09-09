@@ -139,7 +139,7 @@ function showTeamView(team,view){
 }
 
 function driversPage(){
- app.innerHTML=`<section class="page"><div class="page-head"><h2 class="page-title">Drivers</h2><div class="page-note">22 PEOPLE<br>ONE GRID</div></div><div class="team-grid">${DRIVERS.map(d=>`<button class="team-card driver-list-card" data-driver="${d.id}"><div class="driver-list-photo"><img src="${photo(d)}" alt="${d.name}" onerror="this.style.opacity=.2"></div><div class="team-info"><div class="team-name">${d.name}</div><div class="team-drivers">${d.team} · #${d.number}</div></div></button>`).join('')}</div></section>`;
+ app.innerHTML=`<section class="page"><div class="page-head"><h2 class="page-title">Drivers</h2><div class="page-note">22 PEOPLE<br>ONE GRID</div></div><div class="team-grid">${DRIVERS.map(d=>`<button class="team-card driver-list-card" data-driver="${d.id}"><div class="driver-list-photo"><img src="${photo(d)}" alt="${d.name}"></div><div class="team-info"><div class="team-name">${d.name}</div><div class="team-drivers">${d.team} · #${d.number}</div></div></button>`).join('')}</div></section>`;
  document.querySelectorAll('[data-driver]').forEach(c=>c.onclick=()=>go('driver',c.dataset.driver));
 }
 
@@ -148,7 +148,7 @@ const LEGEND_CHAMPIONSHIPS = {"senna": [1988, 1990, 1991], "schumacher": [1994, 
 
 function driverPage(id){
  const d=dBy(id), s=d.stats, team=Object.entries(TEAMS).find(([,ids])=>ids.includes(id))?.[0]||d.team;
- app.innerHTML=`<section class="profile"><div class="profile-visual"><button class="back" id="backTeam">← ${team}</button><img src="${photo(d)}" alt="${d.name}" onerror="this.style.opacity=.18"><div class="profile-number">${d.number}</div></div><article class="profile-content"><div class="profile-kicker">${d.team.toUpperCase()} · DRIVER #${d.number}</div><h1 class="profile-name">${d.first}<br><em>${d.last}</em></h1><p class="profile-intro">${d.bio}</p>
+ app.innerHTML=`<section class="profile"><div class="profile-visual"><button class="back" id="backTeam">← ${team}</button><img src="${photo(d)}" alt="${d.name}"><div class="profile-number">${d.number}</div></div><article class="profile-content"><div class="profile-kicker">${d.team.toUpperCase()} · DRIVER #${d.number}</div><h1 class="profile-name">${d.first}<br><em>${d.last}</em></h1><p class="profile-intro">${d.bio}</p>
  <div class="meta-grid"><div class="meta"><label>DATE OF BIRTH</label><strong>${d.dob}</strong></div><div class="meta"><label>F1 DEBUT</label><strong>${d.debut}</strong></div><div class="meta"><label>NATIONALITY</label><strong>${d.nationality}</strong></div><div class="meta"><label>CURRENT TEAM</label><strong>${d.team}</strong></div><div class="meta"><label>CAR NUMBER</label><strong>#${d.number}</strong></div><div class="meta"><label>F1 TEAMS</label><strong>${d.route}</strong></div></div>
  <section class="career-stats"><div class="section-label">CAREER RECORD</div><div class="stats-grid"><div><span>GRANDS PRIX</span><strong>${s.starts}</strong></div><div><span>WINS</span><strong>${s.wins}</strong></div><div><span>PODIUMS</span><strong>${s.podiums}</strong></div><div><span>POLE POSITIONS</span><strong>${s.poles}</strong></div><div><span>WORLD CHAMPIONSHIPS</span><strong>${s.titles}</strong></div><div><span>CAREER POINTS</span><strong>${s.points}</strong></div><div><span>HIGHEST FINISH</span><strong>${s.best}</strong></div><div><span>DNFs</span><strong>${s.dnfs}</strong></div></div></section>
  <section class="career-stats season-mini"><div class="section-label">2026 SO FAR</div><div class="stats-grid"><div><span>POSITION</span><strong>${seasonPosition(d)}</strong></div><div><span>POINTS</span><strong>${seasonPoints(d)}</strong></div><div><span>RACE WINS</span><strong>${seasonWins(d)}</strong></div><div><span>RACE PODIUMS</span><strong>${seasonPodiums(d)}</strong></div><div><span>POLES</span><strong>${seasonPoles(d)}</strong></div><div><span>DNFs</span><strong>${seasonDnfs(d)}</strong></div></div></section>
@@ -540,21 +540,30 @@ sectionChoreo();
  }).observe(pull,{attributes:true,attributeFilter:['class']});
 })();
 
-/* V11 PERFECT — restrained page choreography */
+/* V11 ABSOLUTE — restrained site-wide choreography */
 (function(){
-  const app=document.getElementById('app');
-  if(!app)return;
-  const apply=()=>{
+  const root=document.getElementById('app');
+  if(!root)return;
+
+  const reveal=()=>{
     requestAnimationFrame(()=>{
-      [...app.querySelectorAll('.team-card,.driver-list-card,.driver-card,.legend-card,.archive-card,.team-options button')]
+      root.querySelectorAll('.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card')
         .forEach((el,i)=>{
           el.animate(
-            [{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'translateY(0)'}],
-            {duration:520,delay:Math.min(i,8)*18,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'}
+            [
+              {opacity:0,transform:'translate3d(0,16px,0) scale(.996)'},
+              {opacity:1,transform:'translate3d(0,0,0) scale(1)'}
+            ],
+            {
+              duration:560,
+              delay:Math.min(i,8)*16,
+              easing:'cubic-bezier(.16,1,.3,1)',
+              fill:'both'
+            }
           );
         });
     });
   };
-  new MutationObserver(apply).observe(app,{childList:true});
-  apply();
+  new MutationObserver(reveal).observe(root,{childList:true,subtree:false});
+  reveal();
 })();

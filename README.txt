@@ -17,19 +17,12 @@ ADDED / IMPROVED
 Sound remains OFF by default.
 Timing Mode is intentionally hidden on narrow phones to keep the HUD uncluttered.
 
-V11+ CORRECTED
-- Drivers grid restored directly from the V10 codebase.
-- Driver cards keep V10 face/upper-body photography and overlay names.
-- Driver detail keeps the left-side full-body concept, but the image starts below the fixed header so the head cannot be cut off.
-- Added only lightweight whole-site playful/cinematic polish; no driver-page redesign.
-- Ferrari kept as simple white shield.
-- Universal desktop/tablet/iPhone/Android behavior preserved.
-
-V11 PERFECT
-- Driver index cards re-proportioned to the clean V10 face-card composition.
-- Removed the oversized torso crop from the previous correction.
-- Driver dossier now uses a sticky full-height left visual so the full-body driver remains visible while career stats scroll.
-- Narrower left visual panel makes the full-body portrait occupy the area more naturally without cropping the head or feet.
-- No new stickers, floating labels, or unusual decorative objects were added.
-- Motion is restrained: slower page choreography, quick responsive hover feedback, lightweight implementation.
-- Desktop, tablet, iOS and Android responsive rules included.
+V11 ABSOLUTE
+- Rebased on V10 to restore the exact face-card driver concept.
+- Driver cards use V10 top-anchored portrait photography with corrected brightness and text proportions.
+- Driver detail is now a large sticky full-body left panel; the image is widened within the panel without scaling/cropping the head or feet.
+- Career data scrolls on the right while the driver remains visually present.
+- Ferrari intentionally uses the simple white shield.
+- Site-wide motion is restrained and lightweight: smooth card lifts, clean menu response, cinematic car/wheel page pulls.
+- No unusual new stickers, floating labels or decorative clutter added.
+- Desktop, tablet, iPhone, Android and landscape responsive rules included.
