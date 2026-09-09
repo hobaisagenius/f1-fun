@@ -1493,3 +1493,64 @@ body[data-detail="ferrari"] .team-hero-logo{
     width:76px!important;height:94px!important;
   }
 }
+
+/* =========================================================
+   V10.4 — CLEAN FERRARI CREST PRESENTATION
+   ========================================================= */
+
+/* The badge itself is already shield-shaped. Do not crop it into another fake shield. */
+.team-logo-wrap img[alt="Ferrari logo"]{
+  width:60px!important;
+  height:72px!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  filter:none!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+
+/* Ferrari detail hero gets a slightly larger, clean crest. */
+body[data-detail="Ferrari"] .team-hero-logo,
+body[data-detail="ferrari"] .team-hero-logo{
+  width:76px!important;
+  height:92px!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  filter:none!important;
+  opacity:1!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+/* Keep the crest from competing with the big FERRARI title. */
+body[data-detail="Ferrari"] .team-hero-logo,
+body[data-detail="ferrari"] .team-hero-logo{
+  margin-right:18px!important;
+}
+
+/* On saturated Ferrari red, make any JPG background edge visually disappear. */
+body[data-detail="Ferrari"] .team-hero-logo,
+body[data-detail="ferrari"] .team-hero-logo,
+.team-card[data-team="Ferrari"] .team-logo-wrap img{
+  mix-blend-mode:multiply;
+}
+
+/* Preserve clean contrast on small screens. */
+@media(max-width:700px){
+  .team-logo-wrap img[alt="Ferrari logo"]{
+    width:48px!important;height:58px!important;
+  }
+  body[data-detail="Ferrari"] .team-hero-logo,
+  body[data-detail="ferrari"] .team-hero-logo{
+    width:62px!important;height:74px!important;margin-right:12px!important;
+  }
+}

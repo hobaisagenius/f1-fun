@@ -38,3 +38,10 @@ V10.3 FERRARI LOGO PATCH
 - Applied globally through the shared Ferrari logo mapping.
 - Ferrari now uses shield proportions on the Teams grid and Ferrari detail page.
 - Kept all V10.2 routing, animations, sound, Timing Mode, driver photo fixes and universal responsive behavior.
+
+V10.4 FERRARI CREST CLEANUP
+- Removed the artificial clip-path and border treatment that made Ferrari's badge look chunky/weird.
+- Uses the actual shield image at natural proportions.
+- Reduced crest size on cards and team hero so it feels integrated instead of oversized.
+- Added multiply blending on Ferrari red to visually suppress the JPG background edge.
+- Kept all V10.3 routing, driver-image, sound, Timing Mode, transition and universal fixes.
