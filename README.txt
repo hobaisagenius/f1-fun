@@ -21,3 +21,13 @@ real page function at the midpoint of the car/wheel pull. This fixes the issue w
 the animation played but the destination never appeared.
 
 V5: heavy signature transition only on major sections; quick playful motion on detail navigation; larger/heavier car and wheel; stronger team-color identity and playful UI.
+
+V6 PLAYGROUND PASS
+- Re-proportioned team, driver and archive cards.
+- Consistent image cropping and object positioning.
+- Staggered page/card reveals.
+- Magnetic buttons and stronger press feedback.
+- Animated race tape, stickers, ambient numbers and checker graphics.
+- Playful card shapes and hover tilt.
+- More expressive team pages and stats.
+- Responsive proportions retained on phones/tablets.

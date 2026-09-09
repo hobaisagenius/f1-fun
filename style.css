@@ -771,3 +771,164 @@ body{overflow-x:hidden}
 .fun-hud{transform:rotate(-1.5deg);transition:.3s}.fun-hud:hover{transform:rotate(1deg) scale(1.04)}.hud-dot{animation:pulse 1.8s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.45)}}
 .menu-link:hover{transform:skewX(-5deg) translateX(8px)}
 @media(max-width:700px){.heavy-mode .race-pull-car{width:105vw!important;height:230px!important}.heavy-mode .race-pull-wheel{width:76vw!important;left:-82vw!important}.team-page .team-hero{box-shadow:6px 6px 0 #000}}
+
+/* =========================================================
+   CREATIVE RACE V6 — PLAYGROUND PASS
+   ========================================================= */
+
+/* Better image/card proportions */
+.team-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:24px!important}
+.team-card{
+ aspect-ratio:16/10!important;min-height:0!important;height:auto!important;
+}
+.team-photo,.team-card>img{
+ width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;
+}
+.team-car-stage{inset:7% 3% 16%!important}
+.team-car-cutout{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important}
+
+.driver-pair{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:24px!important}
+.driver-card{
+ aspect-ratio:4/5!important;min-height:0!important;height:auto!important;background:#111;
+}
+.driver-card>img,.driver-photo{
+ width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 18%!important;
+}
+.driver-info{z-index:7!important}
+.driver-card:after{
+ content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+ background:linear-gradient(180deg,transparent 42%,rgba(0,0,0,.78) 100%)!important;
+}
+.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:22px!important}
+.archive-card{aspect-ratio:4/5;min-height:0!important}
+.archive-card img{width:100%;height:100%;object-fit:cover;object-position:center}
+
+.profile{min-height:calc(100dvh - 80px)!important}
+.profile-visual{overflow:hidden!important}
+.profile-visual img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center top!important}
+
+/* staggered entrances */
+.play-reveal{animation:playReveal .72s cubic-bezier(.16,.85,.2,1) both;animation-delay:var(--delay,0ms)}
+@keyframes playReveal{
+ from{opacity:0;transform:translateY(38px) rotate(1.2deg) scale(.97)}
+ 65%{opacity:1;transform:translateY(-4px) rotate(-.15deg) scale(1.006)}
+ to{opacity:1;transform:none}
+}
+
+/* More playful cards */
+.team-card:nth-child(4n+1){border-radius:0 32px 0 0!important}
+.team-card:nth-child(4n+2){border-radius:32px 0 0 0!important}
+.team-card:nth-child(4n+3){border-radius:0 0 32px 0!important}
+.team-card:nth-child(4n){border-radius:0 0 0 32px!important}
+.driver-card:nth-child(odd){border-radius:0 42px 0 0!important}
+.driver-card:nth-child(even){border-radius:42px 0 0 0!important}
+.team-card:after{
+ content:"";position:absolute;z-index:6;right:18px;bottom:18px;width:58px;height:8px;
+ background:repeating-linear-gradient(90deg,#fff 0 8px,#000 8px 16px);transform:rotate(-3deg)
+}
+.driver-card:before{
+ background:linear-gradient(125deg,transparent 0 75%,rgba(225,6,0,.22) 75%)!important;opacity:1!important
+}
+
+/* Fun labels / stickers */
+.team-card:nth-child(3n+1) .team-info:before{content:"FULL SEND"}
+.team-card:nth-child(3n+2) .team-info:before{content:"BOX BOX"}
+.team-card:nth-child(3n) .team-info:before{content:"PUSH NOW"}
+.team-info:before{
+ display:inline-block;background:var(--race-yellow);color:#000;padding:5px 8px;margin-bottom:9px;
+ font-size:7px;font-weight:900;letter-spacing:.16em;transform:rotate(-2deg);box-shadow:3px 3px 0 #000
+}
+
+/* Animated racing stripes */
+.page-head:before{
+ content:"";position:absolute;right:0;top:-10px;width:150px;height:18px;
+ background:repeating-linear-gradient(90deg,#000 0 18px,#fff 18px 36px);
+ border:2px solid #000;transform:skewX(-16deg);animation:tapeSlide 4s linear infinite
+}
+@keyframes tapeSlide{to{background-position:144px 0}}
+.hero-bottom:before{
+ content:"";width:42px;height:12px;background:var(--race-red);transform:skewX(-20deg);animation:blinkBar 1.4s ease-in-out infinite
+}
+@keyframes blinkBar{50%{width:76px;background:var(--race-yellow)}}
+
+/* Huge ambient race graphics */
+.race-decor{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.decor-number{
+ position:absolute;right:-.03em;top:28%;font:900 italic min(42vw,620px)/.7 "DM Sans",sans-serif;
+ color:rgba(225,6,0,.035);letter-spacing:-.1em
+}
+.decor-stripe{
+ position:absolute;left:-10vw;bottom:8%;width:48vw;height:22px;background:var(--race-red);
+ transform:rotate(-7deg);box-shadow:0 30px 0 #000,0 60px 0 var(--race-yellow);opacity:.08
+}
+.decor-grid{
+ position:absolute;right:0;bottom:0;width:180px;height:180px;opacity:.045;
+ background:conic-gradient(#000 25%,transparent 0 50%,#000 0 75%,transparent 0);background-size:28px 28px
+}
+
+/* Buttons feel toy-like but premium */
+button,.team-arrow,.card-arrow{
+ transform:translate(var(--mx,0),var(--my,0));
+ transition:transform .22s cubic-bezier(.16,.8,.2,1),box-shadow .22s ease!important
+}
+button:active,.team-arrow:active,.card-arrow:active{transform:translate(var(--mx,0),calc(var(--my,0) + 3px)) scale(.94)!important}
+.team-arrow,.card-arrow{width:54px!important;height:54px!important}
+.team-arrow:after,.card-arrow:after{
+ content:"";position:absolute;inset:-7px;border:2px dashed currentColor;opacity:0;border-radius:inherit;transition:.25s
+}
+.team-arrow:hover:after,.card-arrow:hover:after{opacity:.35;transform:rotate(15deg)}
+
+/* Menu becomes a playful race board */
+.top-menu{background:var(--race-red)!important}
+.menu-inner:before{
+ content:"SELECT YOUR LINE";display:block;color:#000;background:var(--race-yellow);width:max-content;
+ padding:7px 11px;margin-bottom:18px;font-size:8px;font-weight:900;letter-spacing:.18em;transform:rotate(-2deg)
+}
+.menu-link{border-bottom:2px solid rgba(0,0,0,.2)!important}
+.menu-link:hover{box-shadow:inset 10px 0 0 var(--race-yellow)}
+
+/* Team-specific page fun */
+.team-page .team-hero{position:relative;overflow:hidden!important}
+.team-page .team-hero:after{
+ content:"";position:absolute;width:210px;height:210px;border:34px solid rgba(255,255,255,.12);
+ border-radius:50%;right:-60px;top:-70px
+}
+.team-page .team-options{gap:16px!important}
+.team-page .team-options button:nth-child(2){transform:rotate(.6deg)}
+.team-page .team-options button:nth-child(3){transform:rotate(-.6deg)}
+.team-page .team-options button:hover{transform:translate(-5px,-5px) rotate(0)!important}
+
+/* stats pop like timing tower tiles */
+.stat,.meta{position:relative;overflow:hidden}
+.stat:after,.meta:after{
+ content:"";position:absolute;left:0;bottom:0;width:0;height:4px;background:var(--race-red);transition:width .45s cubic-bezier(.2,.8,.2,1)
+}
+.stat:hover:after,.meta:hover:after{width:100%}
+.stat:hover .stat-value{transform:translateY(-3px) rotate(-1deg)}
+.stat-value{display:inline-block;transition:.3s}
+
+/* desktop card hover has lift + tilt */
+@media(hover:hover){
+ .team-card:hover,.driver-card:hover,.archive-card:hover{
+  box-shadow:14px 16px 0 #000!important;
+ }
+ .team-card:hover img,.driver-card:hover img,.archive-card:hover img{transform:scale(1.045)!important}
+ .team-card img,.driver-card img,.archive-card img{transition:transform .65s cubic-bezier(.18,.8,.2,1)!important}
+}
+
+/* responsive proportions */
+@media(max-width:900px){
+ .archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:700px){
+ .team-grid,.driver-pair,.archive-grid{grid-template-columns:1fr!important;gap:22px!important}
+ .team-card{aspect-ratio:4/3!important}
+ .driver-card{aspect-ratio:4/5!important}
+ .archive-card{aspect-ratio:4/5!important}
+ .page-head:before{width:90px}
+ .team-card,.driver-card,.archive-card{border-radius:0 26px 0 0!important}
+ .profile-visual{height:62dvh!important;min-height:440px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .play-reveal,.page-head:before,.hero-bottom:before,.hud-dot{animation:none!important}
+}

@@ -411,3 +411,28 @@ if(matchMedia('(pointer:fine)').matches){
  document.addEventListener('pointermove',e=>{const x=e.target.closest('.team-card,.driver-card,.archive-card');if(!x)return;const r=x.getBoundingClientRect(),a=(e.clientX-r.left)/r.width-.5,b=(e.clientY-r.top)/r.height-.5;x.style.setProperty('--rx',`${-b*3}deg`);x.style.setProperty('--ry',`${a*4}deg`)},{passive:true});
  document.addEventListener('pointerout',e=>{const x=e.target.closest?.('.team-card,.driver-card,.archive-card');if(x){x.style.removeProperty('--rx');x.style.removeProperty('--ry')}});
 }
+function spiceReveal(){
+ requestAnimationFrame(()=>{
+  document.querySelectorAll('.team-card,.driver-card,.archive-card,.team-option,.meta,.stat').forEach((el,i)=>{
+   el.classList.add('play-reveal');
+   el.style.setProperty('--delay',`${Math.min(i,12)*45}ms`);
+  });
+ });
+}
+const spiceObs=new MutationObserver(()=>spiceReveal());
+spiceObs.observe(document.getElementById('app'),{childList:true,subtree:false});
+spiceReveal();
+
+if(matchMedia('(pointer:fine)').matches){
+ document.addEventListener('pointermove',e=>{
+  const b=e.target.closest('button,.team-arrow,.card-arrow');
+  if(!b)return;
+  const r=b.getBoundingClientRect();
+  b.style.setProperty('--mx',`${(e.clientX-(r.left+r.width/2))*.12}px`);
+  b.style.setProperty('--my',`${(e.clientY-(r.top+r.height/2))*.12}px`);
+ });
+ document.addEventListener('pointerout',e=>{
+  const b=e.target.closest?.('button,.team-arrow,.card-arrow');
+  if(b){b.style.removeProperty('--mx');b.style.removeProperty('--my')}
+ });
+}
