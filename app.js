@@ -590,3 +590,39 @@ document.addEventListener('error',function(e){
     });
   }
 })();
+
+/* V11+ site-wide premium/playful micro-interactions */
+(function(){
+  const root=document.getElementById('app');
+  if(!root)return;
+
+  function arm(){
+    requestAnimationFrame(()=>{
+      root.querySelectorAll('.team-card,.driver-list-card,.driver-card,.legend-card,.archive-card,.team-option-card,.stat,.meta').forEach((el,i)=>{
+        el.classList.add('v11p-enter');
+        el.style.setProperty('--v11p-i',Math.min(i,10));
+      });
+    });
+  }
+  new MutationObserver(arm).observe(root,{childList:true,subtree:false});
+  arm();
+
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+    document.addEventListener('pointermove',e=>{
+      const el=e.target.closest('.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card');
+      if(!el)return;
+      const r=el.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      el.style.setProperty('--mx',`${(x*3.5).toFixed(2)}px`);
+      el.style.setProperty('--my',`${(y*2.5).toFixed(2)}px`);
+      el.style.setProperty('--rx',`${(-y*.7).toFixed(2)}deg`);
+      el.style.setProperty('--ry',`${(x*1.0).toFixed(2)}deg`);
+    },{passive:true});
+    document.addEventListener('pointerout',e=>{
+      const el=e.target.closest?.('.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card');
+      if(el){
+        ['--mx','--my','--rx','--ry'].forEach(p=>el.style.removeProperty(p));
+      }
+    });
+  }
+})();

@@ -2628,3 +2628,414 @@ body[data-detail="ferrari"] .team-hero-logo{
 @media(prefers-reduced-motion:reduce){
   .v11-reveal,.page-title,.page-head:after{animation-duration:.01ms!important;animation-delay:0ms!important}
 }
+
+/* =========================================================
+   THE GRID — V11+
+   restore face cards + full driver profiles + whole-site polish
+   ========================================================= */
+
+:root{
+  --v11p:cubic-bezier(.16,1,.3,1);
+  --v11p-soft:cubic-bezier(.22,.61,.36,1);
+}
+
+/* ---------- CLEAN GLOBAL RHYTHM ---------- */
+.page{
+  padding-top:clamp(142px,9.5vw,170px)!important;
+}
+.page-head{
+  margin-bottom:34px!important;
+  padding-bottom:20px!important;
+}
+.page-title{
+  margin:0!important;
+  top:auto!important;
+  transform:none!important;
+  font-size:clamp(68px,7.8vw,128px)!important;
+  line-height:.8!important;
+  letter-spacing:-.065em!important;
+}
+
+/* ---------- CINEMATIC ENTER: immediate, soft, no sluggishness ---------- */
+.v11p-enter{
+  animation:v11pEnter .52s var(--v11p) both!important;
+  animation-delay:calc(var(--v11p-i,0) * 10ms)!important;
+}
+@keyframes v11pEnter{
+  from{opacity:0;transform:translate3d(0,14px,0) scale(.996)}
+  to{opacity:1;transform:none}
+}
+.page-title{animation:v11pTitle .68s var(--v11p) both!important}
+@keyframes v11pTitle{
+  from{opacity:0;transform:translate3d(-28px,0,0) skewX(-1.5deg)}
+  to{opacity:1;transform:none}
+}
+
+/* ---------- SIGNATURE PAGE PULL: smoother / lighter / cinematic ---------- */
+#pagePullShell.page-pull-out{
+  animation:v11pPullOut .72s var(--v11p-soft) both!important;
+}
+#pagePullShell.page-pull-in{
+  animation:v11pPullIn .58s var(--v11p) both!important;
+}
+@keyframes v11pPullOut{
+  0%{transform:translate3d(0,0,0)}
+  34%{transform:translate3d(4vw,0,0)}
+  100%{transform:translate3d(104vw,0,0)}
+}
+@keyframes v11pPullIn{
+  from{transform:translate3d(-104vw,0,0)}
+  to{transform:translate3d(0,0,0)}
+}
+.heavy-mode.car-mode .race-pull-car{
+  animation:v11pCar .98s var(--v11p-soft) both!important;
+}
+@keyframes v11pCar{
+  from{left:0;transform:translate3d(-74vw,2px,0) scale(.98)}
+  48%{transform:translate3d(18vw,-3px,0) scale(1)}
+  to{left:0;transform:translate3d(112vw,0,0) scale(1)}
+}
+.heavy-mode.wheel-mode .race-pull-wheel{
+  animation:v11pWheel .98s var(--v11p-soft) both!important;
+}
+@keyframes v11pWheel{
+  from{left:0;transform:translate3d(-52vw,0,0) rotate(0deg)}
+  to{left:0;transform:translate3d(112vw,0,0) rotate(920deg)}
+}
+
+/* =========================================================
+   DRIVERS GRID — RETURN TO FACE / UPPER-BODY PHOTO CARDS
+   ========================================================= */
+.driver-list-card{
+  height:clamp(440px,28vw,500px)!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  overflow:hidden!important;
+  background:#101112!important;
+  border-radius:0 24px 0 0!important;
+}
+.driver-list-photo{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+  background:#101112!important;
+}
+.driver-list-photo img{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center top!important;
+  transform:scale(2.18)!important;
+  transform-origin:50% 16%!important;
+  opacity:1!important;
+  filter:brightness(.98) contrast(1.025) saturate(.98)!important;
+  transition:transform .85s var(--v11p),filter .45s ease!important;
+}
+.driver-list-card:hover .driver-list-photo img{
+  transform:scale(2.26)!important;
+  filter:brightness(1.02) contrast(1.02) saturate(1)!important;
+}
+.driver-list-card:after{
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.02) 0%,
+    rgba(0,0,0,0) 42%,
+    rgba(0,0,0,.12) 61%,
+    rgba(0,0,0,.84) 100%
+  )!important;
+}
+.driver-list-card .team-info{
+  z-index:8!important;
+  left:28px!important;
+  right:28px!important;
+  bottom:24px!important;
+}
+.driver-list-card .team-name{
+  max-width:88%!important;
+  font-size:clamp(38px,3.5vw,60px)!important;
+  line-height:.86!important;
+  letter-spacing:-.055em!important;
+  white-space:normal!important;
+  text-wrap:balance!important;
+}
+.driver-list-card .team-drivers{
+  margin-top:9px!important;
+  font-size:11px!important;
+  opacity:.84!important;
+}
+.driver-list-card[data-driver="kimi-antonelli"] .team-name,
+.driver-list-card[data-driver="lewis-hamilton"] .team-name,
+.driver-list-card[data-driver="charles-leclerc"] .team-name{
+  font-size:clamp(35px,3.15vw,54px)!important;
+}
+
+/* Different playful top rail per card, but still premium */
+.driver-list-card:nth-child(4n+1){border-top:5px solid var(--race-yellow)!important}
+.driver-list-card:nth-child(4n+2){border-top:5px solid var(--race-red)!important}
+.driver-list-card:nth-child(4n+3){border-top:5px solid var(--race-blue)!important}
+.driver-list-card:nth-child(4n){border-top:5px solid rgba(255,255,255,.9)!important}
+
+/* =========================================================
+   DRIVER DETAIL — FULL DRIVER VISIBLE, FACE NEVER CUT OFF
+   ========================================================= */
+.profile{
+  min-height:100vh!important;
+  padding-top:92px!important;
+  grid-template-columns:46% 54%!important;
+  background:var(--paper)!important;
+}
+.profile-visual{
+  position:relative!important;
+  min-height:calc(100vh - 92px)!important;
+  height:calc(100vh - 92px)!important;
+  overflow:hidden!important;
+  background:var(--paper2)!important;
+}
+.profile-visual img{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  mix-blend-mode:multiply!important;
+  transform:none!important;
+  animation:v11pProfile .9s var(--v11p) both!important;
+}
+@keyframes v11pProfile{
+  from{opacity:.42;transform:scale(1.035)}
+  to{opacity:1;transform:scale(1)}
+}
+.profile-number{
+  left:24px!important;
+  bottom:10px!important;
+  opacity:.14!important;
+}
+.back{
+  top:24px!important;
+  left:32px!important;
+  background:#0a0a0a!important;
+  color:#fff!important;
+  padding:10px 13px!important;
+}
+.profile-content{
+  padding:72px 6vw 8vh 6vw!important;
+}
+.profile-name{
+  font-size:clamp(66px,7.4vw,122px)!important;
+  line-height:.8!important;
+  margin-bottom:24px!important;
+}
+.profile-intro{
+  max-width:620px!important;
+  font-size:15px!important;
+  line-height:1.72!important;
+}
+
+/* ---------- WHOLE-SITE CARD MOTION ---------- */
+.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card{
+  transform:
+    perspective(1200px)
+    translate3d(var(--mx,0),var(--my,0),0)
+    rotateX(var(--rx,0deg))
+    rotateY(var(--ry,0deg))!important;
+  transition:
+    transform .46s var(--v11p),
+    box-shadow .46s var(--v11p),
+    filter .32s ease!important;
+}
+@media(hover:hover){
+  .team-card:hover,.driver-list-card:hover,.legend-card:hover,.archive-card:hover,.team-option-card:hover{
+    transform:
+      perspective(1200px)
+      translate3d(var(--mx,0),calc(var(--my,0) - 6px),0)
+      rotateX(var(--rx,0deg))
+      rotateY(var(--ry,0deg))!important;
+    box-shadow:11px 13px 0 #0a0a0a!important;
+  }
+}
+
+/* ---------- TEAM CARDS ---------- */
+.team-card{
+  height:clamp(425px,28vw,510px)!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+}
+.team-car-stage{inset:14% 4% 24%!important}
+.team-car-cutout{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+.team-name{
+  font-size:clamp(44px,4.4vw,74px)!important;
+  line-height:.86!important;
+}
+
+/* ---------- FERRARI: clean white badge, no broken crest attempts ---------- */
+.team-logo-wrap img[alt="Ferrari logo"],
+.team-card[data-team="Ferrari"] .team-logo-wrap img{
+  width:45px!important;
+  height:55px!important;
+  object-fit:contain!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+  opacity:1!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  box-shadow:none!important;
+}
+body[data-detail="Ferrari"] .team-hero-logo,
+body[data-detail="ferrari"] .team-hero-logo{
+  width:55px!important;
+  height:67px!important;
+  object-fit:contain!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+  opacity:1!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  box-shadow:none!important;
+}
+
+/* ---------- TEAM DETAIL ---------- */
+.team-page .team-hero{min-height:390px!important}
+.team-page .team-title-row{
+  display:flex!important;
+  align-items:center!important;
+  gap:18px!important;
+  z-index:5!important;
+}
+.team-page .team-title-row .page-title{
+  font-size:clamp(62px,6.8vw,112px)!important;
+}
+.team-page .team-hero p{
+  max-width:820px!important;
+  font-size:clamp(15px,1.2vw,18px)!important;
+  line-height:1.62!important;
+}
+
+/* ---------- LEGENDS / ARCHIVE ---------- */
+.legend-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:0!important;
+}
+.legend-card{
+  min-height:342px!important;
+  padding:28px 30px 26px!important;
+}
+.legend-card h3{
+  font-size:clamp(36px,3.25vw,55px)!important;
+  line-height:.9!important;
+}
+.archive-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:18px!important;
+}
+.archive-card{
+  min-height:325px!important;
+  padding:25px!important;
+}
+
+/* ---------- PLAYFUL SITE-WIDE DETAILS ---------- */
+.menu-link:hover{
+  transform:translate3d(9px,0,0) skewX(-2deg)!important;
+}
+.team-card:hover .team-info:before{
+  transform:translateY(-2px) rotate(0deg)!important;
+  box-shadow:5px 5px 0 #080808!important;
+}
+.page-head:after{
+  animation:v11pRail 1s var(--v11p) both!important;
+}
+@keyframes v11pRail{from{width:0}to{width:22%}}
+.stat,.meta{
+  transition:transform .35s var(--v11p),background .35s ease!important;
+}
+.stat:hover,.meta:hover{
+  transform:translateY(-3px)!important;
+}
+
+/* ---------- HUD ---------- */
+.fun-hud{
+  right:8px!important;
+  left:auto!important;
+  bottom:7px!important;
+  transform:scale(.64)!important;
+  transform-origin:right bottom!important;
+  opacity:.82!important;
+}
+.fun-hud:hover{
+  transform:scale(.7)!important;
+  opacity:1!important;
+}
+
+/* ---------- UNIVERSAL ---------- */
+@media(max-width:980px){
+  .profile{grid-template-columns:45% 55%!important}
+  .legend-grid,.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .team-card,.driver-list-card{height:clamp(405px,47vw,490px)!important}
+}
+@media(max-width:700px){
+  .page{
+    padding-top:calc(108px + env(safe-area-inset-top))!important;
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+  .page-title{font-size:clamp(50px,16vw,80px)!important}
+  .team-grid,.driver-pair,.legend-grid,.archive-grid,.team-options{
+    grid-template-columns:1fr!important;
+  }
+  .driver-list-card{
+    height:clamp(400px,110vw,510px)!important;
+  }
+  .driver-list-photo img{
+    transform:scale(2.0)!important;
+    transform-origin:50% 14%!important;
+  }
+  .driver-list-card:hover .driver-list-photo img{transform:scale(2.0)!important}
+  .profile{
+    display:block!important;
+    padding-top:78px!important;
+  }
+  .profile-visual{
+    height:62vh!important;
+    min-height:440px!important;
+  }
+  .profile-visual img{
+    object-fit:contain!important;
+    object-position:center bottom!important;
+  }
+  .profile-content{
+    padding:42px 20px 60px!important;
+  }
+  .profile-name{
+    font-size:clamp(54px,17vw,86px)!important;
+  }
+  .back{
+    top:14px!important;
+    left:14px!important;
+  }
+  .legend-card,.archive-card{min-height:auto!important}
+  .fun-hud{right:5px!important;bottom:5px!important;transform:scale(.58)!important}
+}
+@media(max-height:520px) and (orientation:landscape){
+  .profile{padding-top:58px!important}
+  .profile-visual{height:calc(100vh - 58px)!important;min-height:0!important}
+  .team-card,.driver-list-card{height:350px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .v11p-enter,.page-title,.page-head:after,.profile-visual img{
+    animation-duration:.01ms!important;
+    animation-delay:0ms!important;
+  }
+}

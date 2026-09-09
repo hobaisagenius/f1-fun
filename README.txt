@@ -88,3 +88,13 @@ V11
 - Added subtle 3D hover, cinematic reveals, animated header rails, team-chip motion, archive/legend lift, and menu motion across the whole site.
 - Reduced Race Mode HUD further.
 - Preserved V10 routing, optional sound, Timing Mode, iOS/Android/tablet responsiveness.
+
+V11+
+- Driver grid restored to face / upper-body cards using aggressive top-centered portrait crop.
+- Driver profile fixed so the full driver is visible and the face cannot sit behind the fixed header.
+- Profile now uses contained full-body photography, proper top offset, smaller content title and cleaner spacing.
+- Page pulls softened and made more cinematic without becoming heavy.
+- Site-wide subtle 3D hover, reveal motion, menu motion, team-chip movement, stats lift and archive/legend polish.
+- Ferrari remains the simple white shield treatment.
+- Race Mode HUD reduced further.
+- Universal desktop/tablet/iPhone/Android/landscape support retained.
