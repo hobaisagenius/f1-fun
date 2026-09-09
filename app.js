@@ -139,29 +139,7 @@ function showTeamView(team,view){
 }
 
 function driversPage(){
- app.innerHTML=`<section class="page drivers-page">
-  <div class="page-head">
-   <div>
-    <div class="archive-kicker">THE GRID / 2026</div>
-    <h2 class="page-title">Drivers</h2>
-   </div>
-   <div class="page-note">22 PEOPLE<br>ONE GRID</div>
-  </div>
-  <div class="driver-grid">
-   ${DRIVERS.map((d,i)=>`<button class="driver-tile" data-driver="${d.id}" style="--tile:${i+1}">
-    <div class="driver-tile-media">
-      <img src="${photo(d)}" alt="${d.name}">
-      <div class="driver-tile-index">${String(i+1).padStart(2,'0')}</div>
-      <div class="driver-tile-chip">${i%3===0?'FULL SEND':i%3===1?'PUSH LAP':'BOX BOX'}</div>
-    </div>
-    <div class="driver-tile-info">
-      <div class="driver-tile-team">${d.team} · #${d.number}</div>
-      <div class="driver-tile-name">${d.first}<br><strong>${d.last}</strong></div>
-      <span class="driver-tile-arrow">↗︎</span>
-    </div>
-   </button>`).join('')}
-  </div>
- </section>`;
+ app.innerHTML=`<section class="page"><div class="page-head"><h2 class="page-title">Drivers</h2><div class="page-note">22 PEOPLE<br>ONE GRID</div></div><div class="team-grid">${DRIVERS.map(d=>`<button class="team-card driver-list-card" data-driver="${d.id}"><div class="driver-list-photo"><img src="${photo(d)}" alt="${d.name}"></div><div class="team-info"><div class="team-name">${d.name}</div><div class="team-drivers">${d.team} · #${d.number}</div></div></button>`).join('')}</div></section>`;
  document.querySelectorAll('[data-driver]').forEach(c=>c.onclick=()=>go('driver',c.dataset.driver));
 }
 
@@ -577,37 +555,37 @@ document.addEventListener('error',function(e){
  host.appendChild(fallback);
 },true);
 
-/* V10.8 cinematic micro-interactions */
+/* V11 — lightweight playful system */
 (function(){
   const appRoot=document.getElementById('app');
   if(!appRoot)return;
-  const reveal=()=>{
+
+  function prep(){
     requestAnimationFrame(()=>{
-      appRoot.querySelectorAll('.driver-tile,.team-card,.legend-card,.archive-card,.team-option-card').forEach((el,i)=>{
-        el.style.setProperty('--reveal-order',Math.min(i,10));
-        el.classList.add('cinematic-ready');
+      appRoot.querySelectorAll('.team-card,.driver-list-card,.archive-card,.legend-card,.team-option-card,.stat,.meta').forEach((el,i)=>{
+        el.classList.add('v11-reveal');
+        el.style.setProperty('--v11i',Math.min(i,10));
       });
     });
-  };
-  new MutationObserver(reveal).observe(appRoot,{childList:true,subtree:false});
-  reveal();
+  }
+  new MutationObserver(prep).observe(appRoot,{childList:true,subtree:false});
+  prep();
 
   if(matchMedia('(hover:hover) and (pointer:fine)').matches){
     document.addEventListener('pointermove',e=>{
-      const tile=e.target.closest('.driver-tile');
-      if(!tile)return;
-      const r=tile.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-      tile.style.setProperty('--tx',`${(x*6).toFixed(2)}px`);
-      tile.style.setProperty('--ty',`${(y*4).toFixed(2)}px`);
-      tile.style.setProperty('--rx',`${(-y*1.2).toFixed(2)}deg`);
-      tile.style.setProperty('--ry',`${(x*1.8).toFixed(2)}deg`);
+      const card=e.target.closest('.team-card,.driver-list-card,.archive-card,.legend-card,.team-option-card');
+      if(!card)return;
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5;
+      const y=(e.clientY-r.top)/r.height-.5;
+      card.style.setProperty('--v11rx',`${(-y*1.1).toFixed(2)}deg`);
+      card.style.setProperty('--v11ry',`${(x*1.5).toFixed(2)}deg`);
     },{passive:true});
     document.addEventListener('pointerout',e=>{
-      const tile=e.target.closest?.('.driver-tile');
-      if(tile){
-        tile.style.removeProperty('--tx');tile.style.removeProperty('--ty');
-        tile.style.removeProperty('--rx');tile.style.removeProperty('--ry');
+      const card=e.target.closest?.('.team-card,.driver-list-card,.archive-card,.legend-card,.team-option-card');
+      if(card){
+        card.style.removeProperty('--v11rx');
+        card.style.removeProperty('--v11ry');
       }
     });
   }

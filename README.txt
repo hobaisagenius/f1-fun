@@ -79,15 +79,12 @@ V10.7 FINAL POLISH
 - Added playful driver-card accent rails, kinetic hover line and smoother lift animation.
 - Retained V10 routing, cinematic page pulls, optional sound, Timing Mode and universal iOS/Android/tablet behavior.
 
-V10.8 DIRECTOR'S CUT
-- Rebuilt the Drivers page instead of trying to keep patching team-card CSS.
-- Driver photography now lives in its own image stage; full portrait is visible with no face chopping.
-- Driver names moved into a separate bottom information panel, eliminating image/text collisions.
-- Added playful accent rails, chips, index numbers, cinematic arrow interactions, subtle 3D hover and photo zoom.
-- Team-card proportions cleaned and simplified.
-- Ferrari intentionally restored to the simple white shield treatment.
-- Team detail title/logo/body proportions rebalanced.
-- Legends and Archive card density standardized.
-- Race Mode HUD reduced further.
-- Immediate cinematic reveals and header accent motion added.
-- V10 routing, car/wheel pulls, optional sound, Timing Mode, iPhone/Android/tablet support retained.
+V11
+- Returned Drivers to the original V10 overlay-card concept.
+- Reframed driver portraits to a larger contained crop so faces are visible without shrinking drivers into tiny full-body figures.
+- Kept names over the card with a cleaner bottom gradient and controlled sizing.
+- Ferrari intentionally stays on the simple white shield.
+- Smoothed and lightened signature car/wheel transitions.
+- Added subtle 3D hover, cinematic reveals, animated header rails, team-chip motion, archive/legend lift, and menu motion across the whole site.
+- Reduced Race Mode HUD further.
+- Preserved V10 routing, optional sound, Timing Mode, iOS/Android/tablet responsiveness.
