@@ -48,6 +48,8 @@ let funNavBusy=false;
 let funLapCount=1;
 function performRoute(route,id){
   if(typeof closeMenu==='function') closeMenu();
+  document.body.dataset.section=route||'home';
+  document.body.dataset.detail=id||'';
   switch(route){
     case 'home': home(); break;
     case 'teams': teamsPage(); break;
@@ -468,3 +470,18 @@ document.addEventListener('click',e=>{
  if(e.target.closest('#soundToggle'))return;
  if(e.target.closest('button,.menu-link,.team-card,.driver-card,.archive-card'))uiTone('tap');
 });
+
+function sectionChoreo(){
+ const section=document.body.dataset.section||'home';
+ const page=document.querySelector('#app > section');
+ if(!page)return;
+ page.classList.add('section-choreo',`choreo-${section.replace(/[^a-z0-9-]/gi,'')}`);
+ requestAnimationFrame(()=>{
+  page.querySelectorAll('.page-title,.page-note,.team-card,.driver-card,.archive-card,.legend-card,.record-card,.champion-row').forEach((el,i)=>{
+   el.style.setProperty('--choreo-i',Math.min(i,10));
+  });
+ });
+}
+const sectionObserver=new MutationObserver(sectionChoreo);
+sectionObserver.observe(document.getElementById('app'),{childList:true});
+sectionChoreo();
