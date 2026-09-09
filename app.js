@@ -81,18 +81,24 @@ function go(route,id){
  const layer=document.getElementById('racePull'),shell=document.getElementById('pagePullShell'),car=document.getElementById('racePullCar');
  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,isBig=BIG_ROUTES.has(route);
  if(!layer||!shell||reduce){performRoute(route,id);return}
+
  if(!isBig){
-  funNavBusy=true;shell.className='quick-pop';
-  setTimeout(()=>{performRoute(route,id);shell.className='quick-pop-in'},150);
-  setTimeout(()=>{shell.className='';funNavBusy=false},500);return;
+  funNavBusy=true;
+  shell.className='quick-pop';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>performRoute(route,id)));
+  setTimeout(()=>{shell.className='quick-pop-in'},70);
+  setTimeout(()=>{shell.className='';funNavBusy=false},330);
+  return;
  }
+
  funNavBusy=true;spiceIndex++;
  const useWheel=spiceIndex%4===0,currentTeam=(id&&TEAMS[id])?id:(DRIVERS[id]?.team||null);
  if(car){const choices=['Ferrari','McLaren','Mercedes','Red Bull Racing'];car.src=teamCar(currentTeam||choices[spiceIndex%choices.length])}
  layer.className='race-pull heavy-mode '+(useWheel?'wheel-mode':'car-mode');
  shell.className='page-pull-out';
- setTimeout(()=>{performRoute(route,id);shell.className='page-pull-in';funLapCount++;const n=document.getElementById('funLap');if(n)n.textContent=String(funLapCount).padStart(2,'0')},760);
- setTimeout(()=>{shell.className='';layer.className='race-pull';funNavBusy=false},1640);
+ // route swaps while the moving object covers the visual seam; no dead pause
+ setTimeout(()=>{performRoute(route,id);shell.className='page-pull-in';funLapCount++;const n=document.getElementById('funLap');if(n)n.textContent=String(funLapCount).padStart(2,'0')},410);
+ setTimeout(()=>{shell.className='';layer.className='race-pull';funNavBusy=false},1040);
 }
 function openMenu(){menuButton.classList.add('open');topMenu.classList.add('open');menuButton.setAttribute('aria-expanded','true')}
 function closeMenu(){menuButton.classList.remove('open');topMenu.classList.remove('open');menuButton.setAttribute('aria-expanded','false')}
@@ -415,7 +421,7 @@ function spiceReveal(){
  requestAnimationFrame(()=>{
   document.querySelectorAll('.team-card,.driver-card,.archive-card,.team-option,.meta,.stat').forEach((el,i)=>{
    el.classList.add('play-reveal');
-   el.style.setProperty('--delay',`${Math.min(i,12)*45}ms`);
+   el.style.setProperty('--delay','0ms');
   });
  });
 }

@@ -31,3 +31,12 @@ V6 PLAYGROUND PASS
 - Playful card shapes and hover tilt.
 - More expressive team pages and stats.
 - Responsive proportions retained on phones/tablets.
+
+V7 PREMIUM MOTION PASS
+- Removed stagger delays.
+- Navigation reacts immediately on click/tap.
+- Detail navigation swaps almost instantly.
+- Major car/wheel transitions are shorter and use smoother acceleration/deceleration.
+- GPU-friendly translate3d motion reduces visual stutter.
+- Card/image/button hover easing is softer and less twitchy.
+- Ambient looping animations were slowed so interaction remains the focus.
