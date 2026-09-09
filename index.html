@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=premium7">
+<link rel="stylesheet" href="style.css?v=final8">
 </head>
 <body>
 <div class="noise"></div>
@@ -59,6 +59,7 @@
 </div>
 <div class="fun-hud">
   <span class="hud-dot"></span><span>RACE MODE</span><b id="funLap">01</b>
+<button id="soundToggle" class="sound-toggle" aria-pressed="false" onclick="toggleSound()"><span id="soundToggleLabel">SOUND OFF</span></button>
 </div>
 <div id="raceSwipe" class="race-swipe" aria-hidden="true">
   <div class="race-swipe-car"><img id="raceSwipeCar" alt=""></div>
@@ -67,6 +68,6 @@
 
 <div class="transition" id="transition"></div>
 <div class="toast" id="toast"></div>
-<script src="app.js?v=premium7"></script>
+<script src="app.js?v=final8"></script>
 </body>
 </html>

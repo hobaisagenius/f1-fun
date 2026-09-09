@@ -1,42 +1,22 @@
-THE GRID — CREATIVE RACE V3
+THE GRID — CREATIVE RACE V8 FINAL UNIVERSAL
 
-This version fixes navigation and rebuilds the transitions around a premium page-pull concept.
+FIXES
+- Corrected the router against the ACTUAL functions in this build.
+- Teams -> teamsPage
+- Legends -> legendsPage
+- Rivalries/Cars/Eras/Races/Champions/Historic Teams/Records/Moments -> archivePage
+- Team/driver/detail navigation remains direct.
+- No valid menu route falls through to Home.
 
-- Buttons now route and render correctly.
-- The car/wheel transition has no background.
-- The current page physically gets pulled off-screen with the car/wheel.
-- The next page slides in underneath.
-- Car motion is slower, smoother and heavier.
-- Wheel transition is intentionally much larger.
-- Main pages stay red/white/black.
-- Team pages retain team-specific colors.
-- More playful hover, press, HUD and menu behavior.
-- One responsive build for desktop, tablet, iPhone and Android.
+UNIVERSAL
+One site for desktop, laptop, tablet, iPhone and Android.
+Includes viewport-fit=cover, iPhone safe areas, coarse-pointer/touch behavior,
+responsive cards, tablet grids, narrow-phone layout and reduced-motion support.
 
-The private v4+ Universal master remains untouched.
+MOTION
+Immediate interaction response, cinematic page arrivals, smoother heavy signature
+transitions on major pages, quick motion on smaller navigation, and no stagger wait.
 
-V4 ROUTER FIX
-The v4+ base is function-routed, not hash-routed. The creative transition now calls the
-real page function at the midpoint of the car/wheel pull. This fixes the issue where
-the animation played but the destination never appeared.
-
-V5: heavy signature transition only on major sections; quick playful motion on detail navigation; larger/heavier car and wheel; stronger team-color identity and playful UI.
-
-V6 PLAYGROUND PASS
-- Re-proportioned team, driver and archive cards.
-- Consistent image cropping and object positioning.
-- Staggered page/card reveals.
-- Magnetic buttons and stronger press feedback.
-- Animated race tape, stickers, ambient numbers and checker graphics.
-- Playful card shapes and hover tilt.
-- More expressive team pages and stats.
-- Responsive proportions retained on phones/tablets.
-
-V7 PREMIUM MOTION PASS
-- Removed stagger delays.
-- Navigation reacts immediately on click/tap.
-- Detail navigation swaps almost instantly.
-- Major car/wheel transitions are shorter and use smoother acceleration/deceleration.
-- GPU-friendly translate3d motion reduces visual stutter.
-- Card/image/button hover easing is softer and less twitchy.
-- Ambient looping animations were slowed so interaction remains the focus.
+SOUND
+Optional subtle synthesized UI sound is included. It defaults OFF. The user can
+turn it on from the Race Mode HUD. No external audio assets are required.

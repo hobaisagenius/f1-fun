@@ -51,18 +51,18 @@ function performRoute(route,id){
   switch(route){
     case 'home': home(); break;
     case 'teams': teamsPage(); break;
+    case 'drivers': driversPage(); break;
     case 'team': teamPage(id); break;
     case 'driver': driverPage(id); break;
-    case 'hall':
-    case 'legends': hallPage(); break;
-    case 'rivalries': rivalriesPage(); break;
-    case 'cars': carsPage(); break;
-    case 'eras': erasPage(); break;
-    case 'races': racesPage(); break;
-    case 'historic-teams': historicTeamsPage(); break;
-    case 'moments': momentsPage(); break;
-    case 'champions': championsPage(); break;
-    case 'records': recordsPage(); break;
+    case 'legends': legendsPage(); break;
+    case 'rivalries':
+    case 'cars':
+    case 'eras':
+    case 'races':
+    case 'champions':
+    case 'historic-teams':
+    case 'records':
+    case 'moments': archivePage(route,id); break;
     case 'compare': openCarCompare(); break;
     case 'rivalry': archiveDetail('rivalry',id); break;
     case 'car': archiveDetail('car',id); break;
@@ -74,7 +74,7 @@ function performRoute(route,id){
   }
   window.scrollTo({top:0,left:0,behavior:'instant'});
 }
-const BIG_ROUTES=new Set(['home','teams','hall','legends','rivalries','cars','eras','races','historic-teams','moments','champions','records']);
+const BIG_ROUTES=new Set(['home','teams','drivers','legends','rivalries','cars','eras','races','historic-teams','moments','champions','records']);
 let spiceIndex=0;
 function go(route,id){
  if(funNavBusy)return;
@@ -91,7 +91,7 @@ function go(route,id){
   return;
  }
 
- funNavBusy=true;spiceIndex++;
+ funNavBusy=true;spiceIndex++;uiTone('nav');
  const useWheel=spiceIndex%4===0,currentTeam=(id&&TEAMS[id])?id:(DRIVERS[id]?.team||null);
  if(car){const choices=['Ferrari','McLaren','Mercedes','Red Bull Racing'];car.src=teamCar(currentTeam||choices[spiceIndex%choices.length])}
  layer.className='race-pull heavy-mode '+(useWheel?'wheel-mode':'car-mode');
@@ -442,3 +442,29 @@ if(matchMedia('(pointer:fine)').matches){
   if(b){b.style.removeProperty('--mx');b.style.removeProperty('--my')}
  });
 }
+
+/* Lightweight optional UI sound — generated locally with Web Audio, no external audio files. */
+let soundEnabled=false;
+let audioCtx=null;
+function ensureAudio(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
+function uiTone(kind='tap'){
+ if(!soundEnabled)return;
+ try{
+  const ctx=ensureAudio(),now=ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain();
+  o.connect(g);g.connect(ctx.destination);
+  if(kind==='nav'){o.type='sawtooth';o.frequency.setValueAtTime(105,now);o.frequency.exponentialRampToValueAtTime(62,now+.16)}
+  else{o.type='sine';o.frequency.setValueAtTime(420,now);o.frequency.exponentialRampToValueAtTime(280,now+.055)}
+  g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(kind==='nav'?.035:.018,now+.008);g.gain.exponentialRampToValueAtTime(.0001,now+(kind==='nav'?.19:.07));
+  o.start(now);o.stop(now+(kind==='nav'?.2:.08));
+ }catch(e){}
+}
+function toggleSound(){
+ soundEnabled=!soundEnabled;
+ document.getElementById('soundToggle')?.setAttribute('aria-pressed',String(soundEnabled));
+ document.getElementById('soundToggleLabel').textContent=soundEnabled?'SOUND ON':'SOUND OFF';
+ if(soundEnabled){ensureAudio().resume?.();uiTone('tap')}
+}
+document.addEventListener('click',e=>{
+ if(e.target.closest('#soundToggle'))return;
+ if(e.target.closest('button,.menu-link,.team-card,.driver-card,.archive-card'))uiTone('tap');
+});
