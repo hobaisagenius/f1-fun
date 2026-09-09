@@ -14,3 +14,8 @@ This version fixes navigation and rebuilds the transitions around a premium page
 - One responsive build for desktop, tablet, iPhone and Android.
 
 The private v4+ Universal master remains untouched.
+
+V4 ROUTER FIX
+The v4+ base is function-routed, not hash-routed. The creative transition now calls the
+real page function at the midpoint of the car/wheel pull. This fixes the issue where
+the animation played but the destination never appeared.

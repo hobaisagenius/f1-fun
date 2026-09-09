@@ -47,9 +47,31 @@ let raceNavBusy=false;
 let funNavBusy=false;
 let funLapCount=1;
 function performRoute(route,id){
-  const target=id?`${route}/${id}`:route;
-  if(location.hash.replace(/^#/,'')!==target) location.hash=target;
-  render();
+  if(typeof closeMenu==='function') closeMenu();
+  switch(route){
+    case 'home': home(); break;
+    case 'teams': teamsPage(); break;
+    case 'team': teamPage(id); break;
+    case 'driver': driverPage(id); break;
+    case 'hall':
+    case 'legends': hallPage(); break;
+    case 'rivalries': rivalriesPage(); break;
+    case 'cars': carsPage(); break;
+    case 'eras': erasPage(); break;
+    case 'races': racesPage(); break;
+    case 'historic-teams': historicTeamsPage(); break;
+    case 'moments': momentsPage(); break;
+    case 'champions': championsPage(); break;
+    case 'records': recordsPage(); break;
+    case 'compare': openCarCompare(); break;
+    case 'rivalry': archiveDetail('rivalry',id); break;
+    case 'car': archiveDetail('car',id); break;
+    case 'era': archiveDetail('era',id); break;
+    case 'race': archiveDetail('race',id); break;
+    case 'historic': archiveDetail('historic',id); break;
+    case 'moment': archiveDetail('moment',id); break;
+    default: home();
+  }
   window.scrollTo({top:0,left:0,behavior:'instant'});
 }
 function go(route,id){
@@ -397,7 +419,7 @@ try{
   /* No action needed: CSS fallback dismisses the intro. */
 }
 
-window.addEventListener('hashchange',render);
+
 
 document.addEventListener('pointerdown',e=>{
   const x=e.target.closest('button,.team-card,.driver-card,.archive-card');
