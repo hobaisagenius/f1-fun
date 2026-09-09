@@ -1,32 +1,18 @@
-THE GRID — CREATIVE RACE V8 FINAL UNIVERSAL
+THE GRID — CREATIVE RACE V10 REFINEMENT
 
-FIXES
-- Corrected the router against the ACTUAL functions in this build.
-- Teams -> teamsPage
-- Legends -> legendsPage
-- Rivalries/Cars/Eras/Races/Champions/Historic Teams/Records/Moments -> archivePage
-- Team/driver/detail navigation remains direct.
-- No valid menu route falls through to Home.
+This pass intentionally refines rather than redesigns V9.
 
-UNIVERSAL
-One site for desktop, laptop, tablet, iPhone and Android.
-Includes viewport-fit=cover, iPhone safe areas, coarse-pointer/touch behavior,
-responsive cards, tablet grids, narrow-phone layout and reduced-motion support.
+ADDED / IMPROVED
+- Higher contrast for micro-labels including THE ARCHIVE.
+- First-session-only F1 five-light opening sequence (~1.6s total).
+- More physical page-pull treatment.
+- Menu-specific racing motifs.
+- Team-detail personality accents.
+- Desktop driver-photo parallax and touch push-in.
+- Optional Timing Mode experimental skin.
+- Existing optional sound retained and refined in the HUD.
+- Landscape phone, safe-area, touch, narrow-screen and reduced-motion fixes.
+- Existing universal desktop/tablet/iPhone/Android behavior retained.
 
-MOTION
-Immediate interaction response, cinematic page arrivals, smoother heavy signature
-transitions on major pages, quick motion on smaller navigation, and no stagger wait.
-
-SOUND
-Optional subtle synthesized UI sound is included. It defaults OFF. The user can
-turn it on from the Race Mode HUD. No external audio assets are required.
-
-V9 FINAL CREATIVE PASS
-- Upgraded car/wheel transition integration with a visual page-grab edge/tow treatment.
-- Each major archive now has a unique interaction language:
-  Teams = pit wall, Drivers = paddock cards, Legends = trophy accent,
-  Rivalries = split tension, Cars = speed lines, Eras = timeline,
-  Races = start lights, Champions = podium, Records = timing tower,
-  Moments = snapshot cards.
-- Detail pages use calmer cinematic motion for readability.
-- Universal responsive behavior from V8 retained.
+Sound remains OFF by default.
+Timing Mode is intentionally hidden on narrow phones to keep the HUD uncluttered.

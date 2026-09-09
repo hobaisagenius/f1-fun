@@ -8,9 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=final9">
+<link rel="stylesheet" href="style.css?v=refine10">
 </head>
 <body>
+<div id="lightsIntro" class="lights-intro" aria-hidden="true">
+ <div class="intro-mark">THE GRID <i>/ 26</i></div>
+ <div class="start-lights"><span></span><span></span><span></span><span></span><span></span></div>
+ <div class="lights-out">LIGHTS OUT</div>
+</div>
 <div class="noise"></div>
 <header class="topbar">
   <button class="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false">
@@ -47,6 +52,7 @@
     <div class="intro-rule"></div>
     <div class="intro-sub">FORMULA 1 · 1950—2026</div>
   </div>
+<button id="timingToggle" class="timing-toggle" aria-pressed="false" onclick="toggleTimingMode()">TIMING MODE</button>
 </div>
 <div id="pagePullShell"><main id="app"></main></div>
 <div id="racePull" class="race-pull" aria-hidden="true">
@@ -68,6 +74,6 @@
 
 <div class="transition" id="transition"></div>
 <div class="toast" id="toast"></div>
-<script src="app.js?v=final9"></script>
+<script src="app.js?v=refine10"></script>
 </body>
 </html>

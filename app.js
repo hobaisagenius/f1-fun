@@ -485,3 +485,57 @@ function sectionChoreo(){
 const sectionObserver=new MutationObserver(sectionChoreo);
 sectionObserver.observe(document.getElementById('app'),{childList:true});
 sectionChoreo();
+
+/* ================= V10 REFINEMENT SYSTEM ================= */
+(function(){
+ // First-session intro only.
+ try{
+  const intro=document.getElementById('lightsIntro');
+  if(intro){
+   if(sessionStorage.getItem('gridIntroSeen')) intro.remove();
+   else{
+    sessionStorage.setItem('gridIntroSeen','1');
+    document.documentElement.classList.add('intro-lock');
+    setTimeout(()=>intro.classList.add('lights-go'),180);
+    setTimeout(()=>intro.classList.add('intro-exit'),1250);
+    setTimeout(()=>{intro.remove();document.documentElement.classList.remove('intro-lock')},1680);
+   }
+  }
+ }catch(e){document.getElementById('lightsIntro')?.remove()}
+
+ // Timing mode is a playful archive/timing-board skin.
+ window.toggleTimingMode=function(){
+  const on=document.body.classList.toggle('timing-mode');
+  const b=document.getElementById('timingToggle');
+  if(b){b.setAttribute('aria-pressed',String(on));b.textContent=on?'EXIT TIMING':'TIMING MODE'}
+  if(on) uiTone?.('nav'); else uiTone?.('tap');
+ };
+
+ // Touch driver cards get a tiny photographic push before navigation.
+ document.addEventListener('pointerdown',e=>{
+  if(e.pointerType==='mouse')return;
+  const card=e.target.closest('.driver-card,.driver-list-card');
+  if(card){card.classList.add('touch-push');setTimeout(()=>card.classList.remove('touch-push'),260)}
+ },{passive:true});
+
+ // Desktop photographic parallax, restrained.
+ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.addEventListener('pointermove',e=>{
+   const card=e.target.closest('.driver-card,.driver-list-card');
+   if(!card)return;
+   const img=card.querySelector('img');if(!img)return;
+   const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+   img.style.setProperty('--px',`${x*8}px`);img.style.setProperty('--py',`${y*6}px`);
+  });
+  document.addEventListener('pointerout',e=>{
+   const card=e.target.closest?.('.driver-card,.driver-list-card');const img=card?.querySelector('img');
+   if(img){img.style.removeProperty('--px');img.style.removeProperty('--py')}
+  });
+ }
+
+ // Prevent scroll fighting the major pull; restore automatically.
+ const pull=document.getElementById('racePull');
+ if(pull)new MutationObserver(()=>{
+  document.documentElement.classList.toggle('nav-lock',pull.classList.contains('heavy-mode'));
+ }).observe(pull,{attributes:true,attributeFilter:['class']});
+})();

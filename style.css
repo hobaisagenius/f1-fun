@@ -1240,3 +1240,124 @@ body[data-section="team"] .team-hero{animation:teamHeroSettle .8s cubic-bezier(.
 @media(prefers-reduced-motion:reduce){
  .section-choreo *{animation-duration:.01ms!important;animation-delay:0ms!important}
 }
+
+/* =========================================================
+   V10 — FINAL REFINEMENT BUILD
+   ========================================================= */
+
+/* 1. Global microtype / contrast audit */
+.page-kicker,.eyebrow,.archive-kicker,.section-kicker,.page-note,.tiny-label,
+[class*="kicker"],[class*="eyebrow"]{
+ opacity:1!important;color:rgba(0,0,0,.68)!important;font-weight:750!important;
+ letter-spacing:.22em!important;text-shadow:none!important
+}
+body[data-section="drivers"] .page-kicker,
+body[data-section="drivers"] .archive-kicker,
+body[data-section="drivers"] [class*="kicker"],
+body[data-section="drivers"] [class*="eyebrow"],
+body[data-section="rivalries"] [class*="kicker"],
+body[data-section="cars"] [class*="kicker"]{color:rgba(255,255,255,.78)!important}
+.archive-label{color:rgba(255,255,255,.82)!important;opacity:1!important;font-weight:800!important}
+
+/* 2. First-session start-light intro */
+.intro-lock,.nav-lock{overflow:hidden!important}
+.lights-intro{
+ position:fixed;inset:0;z-index:99999;background:#0a0a0a;color:#fff;
+ display:grid;place-content:center;gap:28px;text-align:center;
+ transition:transform .62s cubic-bezier(.76,0,.24,1),opacity .5s ease;
+}
+.intro-mark{font:900 italic clamp(26px,4vw,54px)/1 "DM Sans",sans-serif;letter-spacing:-.04em}
+.intro-mark i{color:#e10600;font-style:inherit}
+.start-lights{display:flex;gap:12px;justify-content:center;background:#181818;padding:13px 16px;border-radius:30px}
+.start-lights span{width:clamp(18px,3vw,34px);aspect-ratio:1;border-radius:50%;background:#280000;box-shadow:inset 0 0 0 2px #333}
+.lights-go .start-lights span{animation:lightOn .14s linear forwards}
+.lights-go .start-lights span:nth-child(2){animation-delay:.14s}.lights-go .start-lights span:nth-child(3){animation-delay:.28s}
+.lights-go .start-lights span:nth-child(4){animation-delay:.42s}.lights-go .start-lights span:nth-child(5){animation-delay:.56s}
+@keyframes lightOn{to{background:#ff1308;box-shadow:0 0 24px rgba(255,19,8,.7),inset 0 0 0 2px #ff5b52}}
+.lights-out{font-size:9px;font-weight:900;letter-spacing:.34em;opacity:.45}
+.intro-exit{transform:translate3d(0,-105%,0);opacity:.98}
+.intro-exit .start-lights span{background:#090909!important;box-shadow:none!important}
+
+/* 3. More physical page pull */
+.heavy-mode .race-pull-edge{filter:drop-shadow(18px 0 20px rgba(0,0,0,.2))}
+#pagePullShell.page-pull-out{transform-origin:right center}
+#pagePullShell.page-pull-in{transform-origin:left center}
+.heavy-mode.car-mode .race-pull-edge:after{box-shadow:0 2px 0 rgba(255,255,255,.25),-80px 0 0 -2px rgba(0,0,0,.35)}
+@media(hover:hover){.heavy-mode .race-pull-car{filter:drop-shadow(0 20px 12px rgba(0,0,0,.22))}}
+
+/* 4. Menu motifs */
+.menu-link{position:relative;overflow:hidden}
+.menu-link:after{position:absolute;right:20px;top:50%;transform:translateY(-50%) translateX(18px);opacity:0;
+ font:900 10px/1 "DM Sans",sans-serif;letter-spacing:.14em;transition:.38s cubic-bezier(.16,1,.3,1)}
+.menu-link:hover:after{opacity:.7;transform:translateY(-50%) translateX(0)}
+.menu-link[data-route="teams"]:after{content:"▰ PIT"}
+.menu-link[data-route="drivers"]:after{content:"◉ 44"}
+.menu-link[data-route="legends"]:after{content:"★ ICON"}
+.menu-link[data-route="races"]:after{content:"● ● ● ● ●"}
+.menu-link[data-route="cars"]:after{content:"→→ SPEED"}
+.menu-link[data-route="records"]:after{content:"P1 +0.000"}
+
+/* 5. Team-specific personality */
+body[data-section="team"][data-detail="Ferrari"],
+body[data-section="team"][data-detail="ferrari"]{--team-personality:#e10600}
+body[data-section="team"][data-detail="Mercedes"],
+body[data-section="team"][data-detail="mercedes"]{--team-personality:#00a19c}
+body[data-section="team"][data-detail="McLaren"],
+body[data-section="team"][data-detail="mclaren"]{--team-personality:#ff8700}
+body[data-section="team"][data-detail="Red Bull Racing"],
+body[data-section="team"][data-detail="redbull"]{--team-personality:#1e41ff}
+body[data-section="team"] .team-hero:before{
+ content:"";position:absolute;inset:auto -10% 9% 36%;height:9px;background:var(--team-personality,var(--race-yellow));
+ transform:skewX(-28deg);opacity:.7;animation:teamLine 1.1s cubic-bezier(.16,1,.3,1) both
+}
+@keyframes teamLine{from{transform:translateX(80%) skewX(-28deg)}to{transform:translateX(0) skewX(-28deg)}}
+
+/* 6. Driver photography life */
+.driver-card img,.driver-list-card img{
+ transform:translate3d(var(--px,0),var(--py,0),0) scale(1.025);
+ transition:transform .55s cubic-bezier(.16,1,.3,1)!important
+}
+.driver-card:hover img,.driver-list-card:hover img{transform:translate3d(var(--px,0),var(--py,0),0) scale(1.055)!important}
+.touch-push img{transform:scale(1.065)!important}
+
+/* 7. Optional timing mode */
+.timing-toggle{
+ border:1px solid rgba(255,255,255,.25)!important;background:#111!important;color:#fff!important;
+ padding:7px 9px!important;font:850 7px/1 "DM Sans",sans-serif!important;letter-spacing:.13em!important;
+ white-space:nowrap
+}
+.timing-toggle[aria-pressed="true"]{background:#22d05a!important;color:#07150b!important}
+body.timing-mode #app{background:#0b0d0c!important;color:#f3f5f3!important}
+body.timing-mode .page,body.timing-mode .hero{background:#0b0d0c!important;color:#f3f5f3!important}
+body.timing-mode .team-card,body.timing-mode .driver-card,body.timing-mode .archive-card,
+body.timing-mode .record-card,body.timing-mode .champion-row{
+ border-radius:0!important;box-shadow:none!important;border:1px solid #2b302d!important;background:#111411!important
+}
+body.timing-mode .page-title{font-family:"DM Sans",sans-serif!important;font-style:italic!important;font-weight:900!important}
+body.timing-mode .page-title:before{content:"LIVE ";color:#22d05a;font-size:.18em;vertical-align:top;letter-spacing:.15em}
+body.timing-mode .page-head:after{background:#22d05a!important}
+body.timing-mode .archive-grid,body.timing-mode .team-grid,body.timing-mode .driver-pair{gap:8px!important}
+
+/* 8. Refined sound control / HUD */
+.fun-hud{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.sound-toggle,.timing-toggle{transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s ease!important}
+.sound-toggle:active,.timing-toggle:active{transform:scale(.94)!important}
+
+/* 9. Universal QA fixes */
+@supports(height:100svh){.lights-intro{min-height:100svh}}
+@media(max-width:700px){
+ .lights-intro{padding:env(safe-area-inset-top) 18px env(safe-area-inset-bottom)}
+ .menu-link:after{right:10px;font-size:8px}
+ .timing-toggle{display:none}
+ .driver-card img,.driver-list-card img{transform:scale(1.02)}
+}
+@media(max-height:500px) and (orientation:landscape){
+ .topbar{min-height:52px!important}
+ .page{padding-top:12px!important}
+ .lights-intro{gap:12px}
+ .fun-hud{transform:scale(.86);transform-origin:left bottom}
+}
+@media(prefers-reduced-motion:reduce){
+ .lights-intro{display:none!important}
+ .driver-card img,.driver-list-card img{transform:none!important}
+}
