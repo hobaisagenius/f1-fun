@@ -56,3 +56,14 @@ V10.5 CLEANEST V10
 - Moved Race Mode HUD to bottom-right so it stops covering card copy.
 - Cleaned team-detail option card proportions.
 - Retained V10 animations, sound, Timing Mode, routing and universal phone/tablet support.
+
+V10.6 BEST/CLEANEST FINAL
+- Embedded Ferrari shield directly in app.js as a data URI: no assets-folder dependency.
+- Tightened driver cards and enlarged/cropped portraits so faces and torsos are proportionate.
+- Reduced long driver-name sizing and protected text against card-edge collisions.
+- Rebalanced team cards, car placement, logos and names.
+- Fixed fixed-header/title clipping with stronger page top spacing.
+- Removed stray decorative/transition text from team-title stacking contexts.
+- Tightened Legends and Archive card rhythm.
+- Shrunk/moved Race Mode HUD so it cannot cover primary content.
+- Preserved V10 navigation, transitions, sound, Timing Mode and universal responsiveness.
