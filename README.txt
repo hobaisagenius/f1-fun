@@ -67,3 +67,14 @@ V10.6 BEST/CLEANEST FINAL
 - Tightened Legends and Archive card rhythm.
 - Shrunk/moved Race Mode HUD so it cannot cover primary content.
 - Preserved V10 navigation, transitions, sound, Timing Mode and universal responsiveness.
+
+V10.7 FINAL POLISH
+- Restored Ferrari to the clean white shield treatment requested by the user.
+- Rebuilt driver-card proportions: no manual 114–120% crop, no cut-off faces, tighter card height, controlled name sizing.
+- Rebalanced team cards, car placement, team names and metadata.
+- Refined driver-detail image framing.
+- Standardized Legends and Archive proportions.
+- Cleaned Ferrari/team-detail title row and body proportions.
+- Shrunk Race Mode HUD further so it cannot cover primary content.
+- Added playful driver-card accent rails, kinetic hover line and smoother lift animation.
+- Retained V10 routing, cinematic page pulls, optional sound, Timing Mode and universal iOS/Android/tablet behavior.
