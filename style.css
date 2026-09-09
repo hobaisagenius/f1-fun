@@ -1362,1679 +1362,252 @@ body.timing-mode .archive-grid,body.timing-mode .team-grid,body.timing-mode .dri
  .driver-card img,.driver-list-card img{transform:none!important}
 }
 
-/* V10.1 — Ferrari + driver-photo patch */
-.team-logo-wrap img[alt="Ferrari logo"]{
- width:150px!important;max-width:150px!important;max-height:54px!important;
- object-fit:contain!important;filter:brightness(0) invert(1)!important
-}
-body[data-detail="Ferrari"] .team-hero-logo,
-body[data-detail="ferrari"] .team-hero-logo{
- width:150px!important;max-height:62px!important;opacity:1!important;filter:brightness(0)!important
-}
-.driver-card img,.driver-list-photo img{
- opacity:1!important;mix-blend-mode:normal!important;
- filter:brightness(.94) contrast(1.05) saturate(.96)!important
-}
-.driver-card:after{
- background:linear-gradient(180deg,rgba(0,0,0,.01),rgba(0,0,0,.03) 48%,rgba(0,0,0,.68) 100%)!important
-}
-.driver-list-card:after{
- background:linear-gradient(180deg,rgba(0,0,0,.01),rgba(0,0,0,.02) 50%,rgba(0,0,0,.62) 100%)!important
-}
-.driver-card:hover img,.driver-list-card:hover img{
- filter:brightness(1) contrast(1.05) saturate(1)!important
-}
-@media(max-width:700px){
- .team-logo-wrap img[alt="Ferrari logo"]{width:125px!important}
- body[data-detail="Ferrari"] .team-hero-logo,
- body[data-detail="ferrari"] .team-hero-logo{width:125px!important}
-}
-
 /* =========================================================
-   V10.2 — SCREENSHOT + DATA AUDIT PATCH
+   V11+ CORRECTED
+   V10 driver experience restored + profile framing fixed
    ========================================================= */
 
-/* Tiny metadata must stay legible on saturated cards. */
-.team-card .team-drivers,
-.team-card .micro,
-.driver-list-card .driver-meta,
-.driver-card .driver-meta,
-.archive-kicker,.page-kicker,.eyebrow{
-  opacity:.86!important;
+:root{
+  --v11c:cubic-bezier(.16,1,.3,1);
+  --v11c-soft:cubic-bezier(.22,.61,.36,1);
 }
 
-/* Ferrari wordmark: no generic shield; keep it crisp and proportionate. */
-.team-logo-wrap img[alt="Ferrari logo"]{
-  width:148px!important;height:auto!important;max-height:48px!important;
-  object-fit:contain!important;object-position:left center!important;
-}
-body[data-detail="Ferrari"] .team-hero-logo,
-body[data-detail="ferrari"] .team-hero-logo{
-  width:158px!important;height:auto!important;object-fit:contain!important;
-}
-
-/* Driver imagery: reveal the actual photography and retain text readability only at bottom. */
-.driver-list-photo{background:#151515!important;overflow:hidden!important}
-.driver-list-photo img,.driver-card img{
-  display:block!important;width:100%!important;height:100%!important;
-  object-fit:cover!important;object-position:50% 22%!important;
-  opacity:1!important;visibility:visible!important;mix-blend-mode:normal!important;
-  filter:brightness(.96) contrast(1.04) saturate(.98)!important;
-}
-.driver-list-card:after,.driver-card:after{
-  pointer-events:none!important;
-  background:linear-gradient(180deg,transparent 0%,transparent 54%,rgba(0,0,0,.14) 68%,rgba(0,0,0,.82) 100%)!important;
-}
-
-/* Long surnames should never collide with the card edge. */
-.driver-list-name,.driver-card-name{
-  max-width:calc(100% - 44px)!important;
-  font-size:clamp(44px,5.1vw,88px)!important;
-  line-height:.88!important;
-  overflow-wrap:normal!important;
-  word-break:keep-all!important;
-}
-
-/* Ferrari hero paragraph was too low-contrast in the screenshot. */
-body[data-detail="Ferrari"] .team-hero-copy,
-body[data-detail="ferrari"] .team-hero-copy,
-body[data-detail="Ferrari"] .team-hero p,
-body[data-detail="ferrari"] .team-hero p{
-  color:rgba(255,255,255,.84)!important;
-}
-
-/* Detail-card subtitles were faint. */
-.team-option-card p,.team-option-card .micro{opacity:.72!important;color:#222!important}
-
-/* Graceful broken-image state: no browser broken-image icon. */
-img.asset-failed{opacity:0!important}
-.asset-fallback{
-  position:absolute;inset:0;display:grid;place-items:center;
-  font:900 italic clamp(22px,4vw,54px)/1 "DM Sans",sans-serif;
-  letter-spacing:-.04em;color:rgba(255,255,255,.18);pointer-events:none
-}
-
-@media(max-width:700px){
- .driver-list-name,.driver-card-name{font-size:clamp(36px,12vw,62px)!important;max-width:calc(100% - 24px)!important}
- .driver-list-photo img,.driver-card img{object-position:50% 18%!important}
-}
-
-/* V10.3 — Ferrari actual shield/badge instead of wordmark */
-.team-logo-wrap img[alt="Ferrari logo"]{
-  width:72px!important;
-  height:88px!important;
-  max-width:none!important;
-  max-height:none!important;
-  object-fit:cover!important;
-  object-position:center!important;
-  filter:none!important;
-  border-radius:8px;
-  clip-path:polygon(12% 0,88% 0,100% 18%,88% 82%,50% 100%,12% 82%,0 18%);
-}
-body[data-detail="Ferrari"] .team-hero-logo,
-body[data-detail="ferrari"] .team-hero-logo{
-  width:94px!important;
-  height:116px!important;
-  max-width:none!important;
-  max-height:none!important;
-  object-fit:cover!important;
-  object-position:center!important;
-  filter:none!important;
-  opacity:1!important;
-  border-radius:10px;
-  clip-path:polygon(12% 0,88% 0,100% 18%,88% 82%,50% 100%,12% 82%,0 18%);
-}
-@media(max-width:700px){
-  .team-logo-wrap img[alt="Ferrari logo"]{
-    width:58px!important;height:72px!important;
-  }
-  body[data-detail="Ferrari"] .team-hero-logo,
-  body[data-detail="ferrari"] .team-hero-logo{
-    width:76px!important;height:94px!important;
-  }
-}
-
-/* =========================================================
-   V10.4 — CLEAN FERRARI CREST PRESENTATION
-   ========================================================= */
-
-/* The badge itself is already shield-shaped. Do not crop it into another fake shield. */
-.team-logo-wrap img[alt="Ferrari logo"]{
-  width:60px!important;
-  height:72px!important;
-  max-width:none!important;
-  max-height:none!important;
-  object-fit:contain!important;
-  object-position:center!important;
-  filter:none!important;
-  border-radius:0!important;
-  clip-path:none!important;
-  background:transparent!important;
-  box-shadow:none!important;
-  transform:none!important;
-}
-
-/* Ferrari detail hero gets a slightly larger, clean crest. */
-body[data-detail="Ferrari"] .team-hero-logo,
-body[data-detail="ferrari"] .team-hero-logo{
-  width:76px!important;
-  height:92px!important;
-  max-width:none!important;
-  max-height:none!important;
-  object-fit:contain!important;
-  object-position:center!important;
-  filter:none!important;
-  opacity:1!important;
-  border-radius:0!important;
-  clip-path:none!important;
-  background:transparent!important;
-  box-shadow:none!important;
-}
-
-/* Keep the crest from competing with the big FERRARI title. */
-body[data-detail="Ferrari"] .team-hero-logo,
-body[data-detail="ferrari"] .team-hero-logo{
-  margin-right:18px!important;
-}
-
-/* On saturated Ferrari red, make any JPG background edge visually disappear. */
-body[data-detail="Ferrari"] .team-hero-logo,
-body[data-detail="ferrari"] .team-hero-logo,
-.team-card[data-team="Ferrari"] .team-logo-wrap img{
-  mix-blend-mode:multiply;
-}
-
-/* Preserve clean contrast on small screens. */
-@media(max-width:700px){
-  .team-logo-wrap img[alt="Ferrari logo"]{
-    width:48px!important;height:58px!important;
-  }
-  body[data-detail="Ferrari"] .team-hero-logo,
-  body[data-detail="ferrari"] .team-hero-logo{
-    width:62px!important;height:74px!important;margin-right:12px!important;
-  }
-}
-
-/* =========================================================
-   V10.5 — CLEANEST V10 PROPORTION / LAYOUT PASS
-   ========================================================= */
-
-/* ---------- page/header spacing: prevent giant titles being cut ---------- */
-.page{
-  padding-top:clamp(116px,10vw,152px)!important;
-}
-.page-head{
-  margin-top:0!important;
-  padding-top:10px!important;
-  overflow:visible!important;
-}
-.page-title{
-  font-size:clamp(66px,9.2vw,156px)!important;
-  line-height:.78!important;
-  margin:0 0 34px!important;
-  overflow:visible!important;
-}
-@media(max-width:700px){
-  .page{padding-top:calc(92px + env(safe-area-inset-top))!important}
-  .page-title{font-size:clamp(52px,17vw,86px)!important;line-height:.82!important}
-}
-
-/* ---------- Ferrari: real shield, clean local transparent asset ---------- */
-.team-card[data-team="Ferrari"] .team-logo-wrap{
-  width:72px!important;height:88px!important;
-  display:grid!important;place-items:center!important;
-  background:transparent!important;
-}
-.team-card[data-team="Ferrari"] .team-logo-wrap img,
-.team-logo-wrap img[alt="Ferrari logo"]{
-  width:58px!important;height:72px!important;
-  object-fit:contain!important;object-position:center!important;
-  filter:none!important;mix-blend-mode:normal!important;
-  clip-path:none!important;border:0!important;border-radius:0!important;
-  box-shadow:none!important;background:transparent!important;
-}
-body[data-detail="Ferrari"] .team-hero-logo,
-body[data-detail="ferrari"] .team-hero-logo{
-  width:72px!important;height:90px!important;
-  object-fit:contain!important;filter:none!important;mix-blend-mode:normal!important;
-  clip-path:none!important;border:0!important;border-radius:0!important;
-  box-shadow:none!important;background:transparent!important;
-}
-
-/* ---------- team cards: consistent premium proportions ---------- */
-.team-grid{
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  gap:26px!important;
-}
-.team-card{
-  aspect-ratio:1.56/1!important;
-  min-height:0!important;
-  overflow:hidden!important;
-}
-.team-car-stage{
-  inset:12% 4% 22%!important;
-}
-.team-car-cutout{
-  width:100%!important;height:100%!important;
-  object-fit:contain!important;object-position:center!important;
-}
-.team-info{
-  left:26px!important;right:26px!important;bottom:22px!important;
-}
-.team-name{
-  font-size:clamp(54px,5.6vw,96px)!important;
-  line-height:.84!important;
-}
-
-/* ---------- driver cards: faces visible, names controlled ---------- */
+/* ---------- KEEP V10 DRIVERS GRID, JUST CLEAN THE PROPORTIONS ---------- */
 .driver-list-card{
-  aspect-ratio:1.58/1!important;
-  min-height:0!important;
-  overflow:hidden!important;
-  border-radius:0 28px 0 0!important;
-}
-.driver-list-photo{
-  position:absolute!important;inset:0!important;
-  width:100%!important;height:100%!important;
-  overflow:hidden!important;background:#141414!important;
-}
-.driver-list-photo img,
-.driver-list-card img,
-.driver-card>img{
-  width:100%!important;height:100%!important;
-  object-fit:cover!important;
-  object-position:center top!important;
-  transform:none!important;
-  filter:brightness(.94) contrast(1.03) saturate(.96)!important;
-}
-.driver-list-card:after{
-  background:linear-gradient(180deg,rgba(0,0,0,.02) 0%,transparent 46%,rgba(0,0,0,.18) 66%,rgba(0,0,0,.86) 100%)!important;
-}
-.driver-list-card .team-info{
-  z-index:8!important;
-  left:28px!important;right:28px!important;bottom:24px!important;
-}
-.driver-list-card .team-name{
-  max-width:88%!important;
-  font-size:clamp(42px,4.35vw,76px)!important;
-  line-height:.88!important;
-  letter-spacing:-.055em!important;
-  text-wrap:balance;
-}
-.driver-list-card .team-drivers{
-  margin-top:12px!important;
-  font-size:11px!important;
-  opacity:.84!important;
-}
-
-/* ---------- legends: compact, readable, no giant dead zones ---------- */
-.legend-grid{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:0!important;
-  align-items:stretch!important;
-}
-.legend-card{
-  aspect-ratio:auto!important;
-  min-height:390px!important;
-  padding:34px 36px 30px!important;
-  display:flex!important;
-  flex-direction:column!important;
-  justify-content:flex-start!important;
+  min-height:clamp(500px,38vw,650px)!important;
   overflow:hidden!important;
 }
-.legend-card h3{
-  font-size:clamp(42px,4vw,70px)!important;
-  line-height:.9!important;
-  margin:30px 0 10px!important;
-}
-.legend-card p{
-  font-size:15px!important;
-  line-height:1.65!important;
-  max-width:95%!important;
-}
-.legend-card .card-arrow{
-  top:22px!important;right:22px!important;
-}
-.legend-stats{
-  margin-top:auto!important;
-  padding-top:22px!important;
-}
-
-/* ---------- archive cards: consistent and less oversized ---------- */
-.archive-grid{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:20px!important;
-}
-.archive-card{
-  aspect-ratio:auto!important;
-  min-height:380px!important;
-  padding:30px!important;
-}
-
-/* ---------- HUD: stop covering content ---------- */
-.fun-hud{
-  left:auto!important;
-  right:20px!important;
-  bottom:max(18px,env(safe-area-inset-bottom))!important;
-  transform:rotate(1deg) scale(.92)!important;
-  transform-origin:right bottom!important;
-}
-.fun-hud:hover{transform:rotate(0) scale(.96)!important}
-
-/* ---------- detail cards ---------- */
-.team-options{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:22px!important;
-}
-.team-option-card{
-  min-height:210px!important;
-  padding:30px!important;
-}
-.team-option-card h3{
-  font-size:clamp(32px,3vw,48px)!important;
-}
-
-/* ---------- responsive ---------- */
-@media(max-width:980px){
-  .legend-grid,.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-}
-@media(max-width:700px){
-  .team-grid,.driver-pair,.legend-grid,.archive-grid,.team-options{
-    grid-template-columns:1fr!important;
-  }
-  .team-card,.driver-list-card{aspect-ratio:1.12/1!important}
-  .driver-list-card .team-name{font-size:clamp(38px,12vw,62px)!important}
-  .legend-card,.archive-card{min-height:auto!important}
-  .fun-hud{
-    right:10px!important;bottom:max(10px,env(safe-area-inset-bottom))!important;
-    transform:scale(.82)!important;
-  }
-}
-
-/* =========================================================
-   V10.6 — BEST/CLEANEST V10 FINAL POLISH
-   ========================================================= */
-
-/* ---------- FIX 1: titles must never sit under the fixed header ---------- */
-.page{
-  padding-top:180px!important;
-}
-.page-head{
-  position:relative!important;
-  padding-top:0!important;
-  margin-top:0!important;
-  overflow:visible!important;
-}
-.page-title{
-  position:relative!important;
-  top:auto!important;
-  transform:none!important;
-  margin-top:0!important;
-  line-height:.82!important;
-}
-body[data-section="teams"] .page-title,
-body[data-section="drivers"] .page-title{
-  font-size:clamp(76px,8.6vw,142px)!important;
-}
-@media(max-width:700px){
-  .page{padding-top:calc(118px + env(safe-area-inset-top))!important}
-}
-
-/* ---------- FIX 2: Ferrari crest is small, clean and genuinely integrated ---------- */
-.team-card[data-team="Ferrari"] .team-logo-wrap{
-  width:66px!important;height:78px!important;
-  left:28px!important;top:28px!important;
-  display:grid!important;place-items:center!important;
-  overflow:visible!important;background:transparent!important;
-}
-.team-card[data-team="Ferrari"] .team-logo-wrap img,
-.team-logo-wrap img[alt="Ferrari logo"]{
-  width:54px!important;height:68px!important;
-  max-width:none!important;max-height:none!important;
-  object-fit:contain!important;object-position:center!important;
-  filter:none!important;mix-blend-mode:normal!important;
-  opacity:1!important;background:transparent!important;
-  clip-path:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;
-}
-body[data-detail="Ferrari"] .team-title-row{
-  display:flex!important;align-items:center!important;gap:22px!important;
-}
-body[data-detail="Ferrari"] .team-hero-logo,
-body[data-detail="ferrari"] .team-hero-logo{
-  flex:0 0 auto!important;
-  width:70px!important;height:86px!important;
-  max-width:none!important;max-height:none!important;
-  object-fit:contain!important;
-  filter:none!important;mix-blend-mode:normal!important;opacity:1!important;
-  clip-path:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;
-}
-
-/* ---------- FIX 3: remove stray decorative copy over team titles ---------- */
-.team-page .team-title-row:before,
-.team-page .team-title-row:after,
-.team-page .team-hero .intro-mark,
-.team-page .transition-copy{
-  display:none!important;
-}
-.team-page .team-title-row{
-  isolation:isolate!important;
-  position:relative!important;
-  z-index:4!important;
-}
-.team-page .team-title-row .page-title{
-  z-index:4!important;
-  opacity:1!important;
-}
-.team-page .team-hero:before,
-.team-page .team-hero:after{
-  z-index:1!important;
-}
-.team-page .team-hero>div,
-.team-page .team-identity{
-  position:relative!important;z-index:3!important;
-}
-
-/* ---------- FIX 4: driver cards become tighter and photography is enlarged ---------- */
-.driver-list-card{
-  height:clamp(430px,31vw,545px)!important;
-  aspect-ratio:auto!important;
-  min-height:0!important;
-  overflow:hidden!important;
-}
-.driver-list-photo{
-  position:absolute!important;inset:0!important;
-  width:100%!important;height:100%!important;
-  overflow:hidden!important;background:#111!important;
-}
-.driver-list-photo img,
-.driver-list-card>img{
-  position:absolute!important;
-  left:-7%!important;top:-10%!important;
-  width:114%!important;height:120%!important;
-  max-width:none!important;
-  object-fit:cover!important;
-  object-position:center 10%!important;
-  transform:none!important;
-  transform-origin:center 18%!important;
-  opacity:1!important;
-}
-.driver-list-card:after{
-  background:linear-gradient(180deg,rgba(0,0,0,.01) 0%,transparent 46%,rgba(0,0,0,.14) 64%,rgba(0,0,0,.84) 100%)!important;
-}
-.driver-list-card .team-info{
-  left:30px!important;right:30px!important;bottom:24px!important;
-}
-.driver-list-card .team-name{
-  font-size:clamp(42px,4.1vw,70px)!important;
-  line-height:.86!important;
-  max-width:94%!important;
-  white-space:normal!important;
-  text-wrap:balance!important;
-}
-.driver-list-card .team-drivers{
-  margin-top:10px!important;
-}
-
-/* Specific long names get a little more breathing room */
-.driver-list-card[data-driver="kimi-antonelli"] .team-name,
-.driver-list-card[data-driver="lewis-hamilton"] .team-name{
-  font-size:clamp(38px,3.75vw,64px)!important;
-}
-
-/* ---------- FIX 5: team cards balanced around the car, logo, and name ---------- */
-.team-card{
-  height:clamp(430px,31vw,545px)!important;
-  aspect-ratio:auto!important;
-}
-.team-car-stage{
-  inset:14% 3% 24%!important;
-}
-.team-car-cutout{
-  width:100%!important;height:100%!important;
-  object-fit:contain!important;object-position:center!important;
-}
-.team-info{
-  bottom:24px!important;
-}
-.team-name{
-  font-size:clamp(48px,4.8vw,82px)!important;
-}
-
-/* ---------- FIX 6: legends are compact but still premium/readable ---------- */
-.legend-grid{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  align-items:stretch!important;
-}
-.legend-card{
-  min-height:355px!important;
-  padding:30px 34px 28px!important;
-}
-.legend-card h3{
-  font-size:clamp(38px,3.6vw,62px)!important;
-  margin:26px 0 10px!important;
-  line-height:.9!important;
-}
-.legend-card p{
-  font-size:14px!important;
-  line-height:1.58!important;
-  margin-bottom:22px!important;
-}
-.legend-stats{
-  padding-top:18px!important;
-}
-
-/* ---------- FIX 7: HUD should never cover primary copy/cards ---------- */
-.fun-hud{
-  position:fixed!important;
-  right:18px!important;left:auto!important;
-  bottom:16px!important;
-  z-index:88!important;
-  transform:scale(.84)!important;
-  transform-origin:right bottom!important;
-  opacity:.94!important;
-}
-.fun-hud:hover{transform:scale(.9)!important;opacity:1!important}
-
-/* ---------- FIX 8: cleaner archive card rhythm ---------- */
-.archive-card{
-  min-height:340px!important;
-  padding:28px!important;
-}
-.archive-card h3{
-  font-size:clamp(34px,3.2vw,54px)!important;
-  line-height:.94!important;
-}
-
-/* ---------- responsive ---------- */
-@media(max-width:980px){
-  .driver-list-card,.team-card{height:clamp(390px,47vw,500px)!important}
-  .legend-grid,.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-}
-@media(max-width:700px){
-  .team-grid,.driver-pair,.legend-grid,.archive-grid{grid-template-columns:1fr!important}
-  .driver-list-card,.team-card{height:clamp(390px,115vw,520px)!important}
-  .driver-list-photo img,.driver-list-card>img{
-    left:-10%!important;top:-7%!important;width:120%!important;height:116%!important;
-  }
-  .driver-list-card .team-name{font-size:clamp(38px,12vw,60px)!important}
-  .legend-card{min-height:auto!important}
-  .fun-hud{right:8px!important;bottom:8px!important;transform:scale(.72)!important}
-}
-
-/* ---------- safeguard against stale failed local asset paths ---------- */
-.team-logo-wrap img.asset-failed[alt="Ferrari logo"],
-.team-hero-logo.asset-failed{
-  opacity:1!important;
-}
-
-/* =========================================================
-   V10.7 — FINAL PROPORTION + PLAYFUL POLISH
-   ========================================================= */
-
-/* ---------- GLOBAL SPACING ---------- */
-.page{
-  padding-top:clamp(150px,11vw,188px)!important;
-  padding-left:clamp(22px,5.2vw,88px)!important;
-  padding-right:clamp(22px,5.2vw,88px)!important;
-}
-.page-head{
-  margin:0 0 34px!important;
-  padding:0!important;
-  min-height:0!important;
-  overflow:visible!important;
-}
-.page-title{
-  margin:0!important;
-  font-size:clamp(70px,8.4vw,140px)!important;
-  line-height:.8!important;
-  letter-spacing:-.07em!important;
-  transform:none!important;
-  top:auto!important;
-}
-
-/* ---------- FERRARI: restore simple clean white shield ---------- */
-.team-logo-wrap img[alt="Ferrari logo"],
-.team-card[data-team="Ferrari"] .team-logo-wrap img{
-  width:48px!important;
-  height:58px!important;
-  max-width:none!important;
-  max-height:none!important;
-  object-fit:contain!important;
-  filter:none!important;
-  mix-blend-mode:normal!important;
-  opacity:1!important;
-  clip-path:none!important;
-  border:0!important;
-  border-radius:0!important;
-  box-shadow:none!important;
-  background:transparent!important;
-}
-body[data-detail="Ferrari"] .team-hero-logo,
-body[data-detail="ferrari"] .team-hero-logo{
-  width:58px!important;
-  height:70px!important;
-  max-width:none!important;
-  max-height:none!important;
-  object-fit:contain!important;
-  filter:none!important;
-  mix-blend-mode:normal!important;
-  opacity:1!important;
-  clip-path:none!important;
-  border:0!important;
-  border-radius:0!important;
-  box-shadow:none!important;
-  background:transparent!important;
-}
-
-/* ---------- TEAM CARDS ---------- */
-.team-grid{
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  gap:24px!important;
-}
-.team-card{
-  height:clamp(420px,29vw,510px)!important;
-  min-height:0!important;
-  aspect-ratio:auto!important;
-  overflow:hidden!important;
-}
-.team-car-stage{
-  inset:13% 4% 25%!important;
-}
-.team-car-cutout{
-  width:100%!important;
-  height:100%!important;
-  object-fit:contain!important;
-  object-position:center!important;
-  transform:none!important;
-}
-.team-info{
-  left:28px!important;
-  right:28px!important;
-  bottom:24px!important;
-}
-.team-name{
-  font-size:clamp(48px,4.6vw,78px)!important;
-  line-height:.86!important;
-  white-space:normal!important;
-}
-.team-drivers{
-  font-size:11px!important;
-  line-height:1.4!important;
-  margin-top:8px!important;
-}
-
-/* ---------- DRIVER CARDS: fix crop/proportion ---------- */
-.driver-list-card{
-  height:clamp(430px,30vw,520px)!important;
-  aspect-ratio:auto!important;
-  min-height:0!important;
-  overflow:hidden!important;
-  border-radius:0 26px 0 0!important;
-}
-.driver-list-photo{
+.driver-list-card .driver-list-photo{
   position:absolute!important;
   inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  overflow:hidden!important;
-  background:#111!important;
+  background:#171716!important;
+  z-index:0!important;
 }
-.driver-list-photo img,
-.driver-list-card>img{
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  max-width:none!important;
-  object-fit:cover!important;
-  object-position:center 24%!important;
-  transform:scale(1.015)!important;
-  transform-origin:center center!important;
-  opacity:1!important;
-  filter:brightness(.96) contrast(1.03) saturate(.97)!important;
-}
-.driver-list-card:after{
-  background:linear-gradient(
-    180deg,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0) 52%,
-    rgba(0,0,0,.16) 67%,
-    rgba(0,0,0,.86) 100%
-  )!important;
-}
-.driver-list-card .team-info{
-  z-index:8!important;
-  left:30px!important;
-  right:30px!important;
-  bottom:24px!important;
-}
-.driver-list-card .team-name{
-  max-width:92%!important;
-  font-size:clamp(38px,3.55vw,62px)!important;
-  line-height:.88!important;
-  letter-spacing:-.055em!important;
-  text-wrap:balance!important;
-  white-space:normal!important;
-}
-.driver-list-card .team-drivers{
-  font-size:11px!important;
-  margin-top:10px!important;
-  opacity:.86!important;
-}
-/* Long names get one controlled line-break scale, not giant text over the suit. */
-.driver-list-card[data-driver="kimi-antonelli"] .team-name,
-.driver-list-card[data-driver="lewis-hamilton"] .team-name,
-.driver-list-card[data-driver="charles-leclerc"] .team-name{
-  font-size:clamp(36px,3.25vw,56px)!important;
-}
-
-/* ---------- DRIVER DETAIL ---------- */
-.profile{
-  min-height:100dvh!important;
-}
-.profile-visual{
-  min-height:620px!important;
-  overflow:hidden!important;
-}
-.profile-visual img{
+.driver-list-card .driver-list-photo img{
   width:100%!important;
   height:100%!important;
   object-fit:cover!important;
   object-position:center 18%!important;
-  transform:none!important;
-}
-
-/* ---------- LEGENDS / ARCHIVES ---------- */
-.legend-grid{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:0!important;
-}
-.legend-card{
-  min-height:360px!important;
-  padding:30px 32px 28px!important;
-}
-.legend-card h3{
-  font-size:clamp(38px,3.6vw,60px)!important;
-  line-height:.9!important;
-  margin:26px 0 10px!important;
-}
-.legend-card p{
-  font-size:14px!important;
-  line-height:1.58!important;
-}
-.legend-stats{
-  margin-top:auto!important;
-  padding-top:18px!important;
-}
-.archive-grid{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:18px!important;
-}
-.archive-card{
-  min-height:340px!important;
-  padding:28px!important;
-}
-
-/* ---------- TEAM DETAIL HERO ---------- */
-.team-page .team-hero{
-  min-height:420px!important;
-}
-.team-page .team-title-row{
-  display:flex!important;
-  align-items:center!important;
-  gap:20px!important;
-  position:relative!important;
-  z-index:5!important;
-}
-.team-page .team-title-row .page-title{
-  font-size:clamp(68px,7.2vw,122px)!important;
-  line-height:.82!important;
-}
-.team-page .team-hero p{
-  max-width:850px!important;
-  font-size:clamp(15px,1.25vw,19px)!important;
-  line-height:1.65!important;
-}
-
-/* ---------- HUD: keep playful, never cover names/cards ---------- */
-.fun-hud{
-  right:14px!important;
-  left:auto!important;
-  bottom:12px!important;
-  transform:scale(.76) rotate(1deg)!important;
-  transform-origin:right bottom!important;
-  opacity:.88!important;
-}
-.fun-hud:hover{
-  transform:scale(.82) rotate(0)!important;
-  opacity:1!important;
-}
-
-/* ---------- MORE PLAYFUL, WITHOUT BREAKING LAYOUT ---------- */
-.team-card,.driver-list-card,.archive-card,.legend-card{
-  transition:
-    transform .42s cubic-bezier(.16,1,.3,1),
-    box-shadow .42s cubic-bezier(.16,1,.3,1)!important;
-}
-@media(hover:hover){
-  .team-card:hover,.driver-list-card:hover,.archive-card:hover,.legend-card:hover{
-    transform:translate3d(0,-7px,0) rotate(-.18deg)!important;
-    box-shadow:12px 14px 0 #000!important;
-  }
-  .driver-list-card:hover img{
-    transform:scale(1.045)!important;
-  }
-}
-.team-card:nth-child(odd) .team-info:before{transform:rotate(-2deg)!important}
-.team-card:nth-child(even) .team-info:before{transform:rotate(2deg)!important}
-.driver-list-card:nth-child(4n+1){border-top:7px solid var(--race-yellow)!important}
-.driver-list-card:nth-child(4n+2){border-top:7px solid var(--race-red)!important}
-.driver-list-card:nth-child(4n+3){border-top:7px solid var(--race-blue)!important}
-.driver-list-card:nth-child(4n){border-top:7px solid #000!important}
-
-/* Small kinetic line on hover */
-.driver-list-card:before{
-  content:""!important;
-  position:absolute!important;
-  z-index:9!important;
-  left:24px!important;
-  bottom:94px!important;
-  width:0!important;
-  height:4px!important;
-  background:var(--race-yellow)!important;
-  opacity:.9!important;
-  transition:width .48s cubic-bezier(.16,1,.3,1)!important;
-}
-.driver-list-card:hover:before{width:90px!important}
-
-/* ---------- RESPONSIVE ---------- */
-@media(max-width:980px){
-  .legend-grid,.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  .team-card,.driver-list-card{height:clamp(400px,48vw,500px)!important}
-}
-@media(max-width:700px){
-  .page{
-    padding-top:calc(112px + env(safe-area-inset-top))!important;
-    padding-left:16px!important;
-    padding-right:16px!important;
-  }
-  .page-title{font-size:clamp(52px,16vw,82px)!important}
-  .team-grid,.driver-pair,.legend-grid,.archive-grid,.team-options{
-    grid-template-columns:1fr!important;
-  }
-  .team-card,.driver-list-card{
-    height:clamp(390px,112vw,510px)!important;
-  }
-  .driver-list-photo img,.driver-list-card>img{
-    object-position:center 20%!important;
-    transform:scale(1.01)!important;
-  }
-  .driver-list-card .team-name{
-    font-size:clamp(36px,11vw,58px)!important;
-  }
-  .legend-card,.archive-card{min-height:auto!important}
-  .fun-hud{right:7px!important;bottom:7px!important;transform:scale(.66)!important}
-}
-@media(max-height:520px) and (orientation:landscape){
-  .team-card,.driver-list-card{height:360px!important}
-  .page{padding-top:88px!important}
-}
-
-/* =========================================================
-   THE GRID — V11
-   premium / playful / cinematic / lightweight
-   ========================================================= */
-
-/* ---------- GLOBAL ---------- */
-:root{
-  --v11-ease:cubic-bezier(.16,1,.3,1);
-  --v11-ease-soft:cubic-bezier(.22,.61,.36,1);
-}
-html,body{overflow-x:hidden}
-.page{
-  padding-top:clamp(146px,10vw,174px)!important;
-}
-.page-head{
-  margin-bottom:34px!important;
-  padding-bottom:22px!important;
-}
-.page-title{
-  font-size:clamp(70px,8vw,132px)!important;
-  line-height:.8!important;
-  letter-spacing:-.07em!important;
-  margin:0!important;
-  top:auto!important;
-  transform:none!important;
-}
-.page-note{
-  opacity:.72!important;
-}
-
-/* ---------- CINEMATIC ARRIVAL, NO DEAD DELAY ---------- */
-.v11-reveal{
-  animation:v11Reveal .58s var(--v11-ease) both!important;
-  animation-delay:calc(var(--v11i,0) * 12ms)!important;
-}
-@keyframes v11Reveal{
-  from{opacity:0;transform:translate3d(0,18px,0) scale(.994)}
-  to{opacity:1;transform:none}
-}
-.page-title{animation:v11Title .72s var(--v11-ease) both!important}
-@keyframes v11Title{
-  from{opacity:0;transform:translate3d(-34px,0,0) skewX(-2deg)}
-  to{opacity:1;transform:none}
-}
-
-/* ---------- SIGNATURE TRANSITION: cinematic but lighter ---------- */
-#pagePullShell.page-pull-out{
-  animation:v11PullOut .76s var(--v11-ease-soft) both!important;
-}
-#pagePullShell.page-pull-in{
-  animation:v11PullIn .62s var(--v11-ease) both!important;
-}
-@keyframes v11PullOut{
-  0%{transform:translate3d(0,0,0) scale(1)}
-  35%{transform:translate3d(5vw,0,0) scale(.998)}
-  100%{transform:translate3d(104vw,0,0) scale(.996)}
-}
-@keyframes v11PullIn{
-  0%{transform:translate3d(-104vw,0,0) scale(.996)}
-  100%{transform:translate3d(0,0,0) scale(1)}
-}
-.heavy-mode.car-mode .race-pull-car{
-  animation:v11Car 1.02s var(--v11-ease-soft) both!important;
-}
-@keyframes v11Car{
-  0%{left:0;transform:translate3d(-72vw,4px,0) scale(.97)}
-  44%{transform:translate3d(20vw,-4px,0) scale(1)}
-  100%{left:0;transform:translate3d(112vw,0,0) scale(1)}
-}
-.heavy-mode.wheel-mode .race-pull-wheel{
-  animation:v11Wheel 1.02s var(--v11-ease-soft) both!important;
-}
-@keyframes v11Wheel{
-  from{left:0;transform:translate3d(-50vw,0,0) rotate(0) scale(.97)}
-  to{left:0;transform:translate3d(112vw,0,0) rotate(980deg) scale(1)}
-}
-
-/* ---------- CARDS: subtle playful lift across whole site ---------- */
-.team-card,.driver-list-card,.archive-card,.legend-card,.team-option-card{
-  transform:
-    perspective(1200px)
-    rotateX(var(--v11rx,0deg))
-    rotateY(var(--v11ry,0deg))!important;
-  transition:
-    transform .48s var(--v11-ease),
-    box-shadow .48s var(--v11-ease),
-    filter .35s ease!important;
-  will-change:transform;
-}
-@media(hover:hover){
-  .team-card:hover,.driver-list-card:hover,.archive-card:hover,.legend-card:hover,.team-option-card:hover{
-    transform:
-      perspective(1200px)
-      translate3d(0,-6px,0)
-      rotateX(var(--v11rx,0deg))
-      rotateY(var(--v11ry,0deg))!important;
-    box-shadow:12px 14px 0 #0a0a0a!important;
-  }
-}
-
-/* ---------- DRIVERS: restore original overlay style, fix proportion ---------- */
-.driver-list-card{
-  height:clamp(460px,31vw,540px)!important;
-  min-height:0!important;
-  aspect-ratio:auto!important;
-  overflow:hidden!important;
-  border-radius:0 26px 0 0!important;
-  background:#101112!important;
-}
-.driver-list-photo{
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  overflow:hidden!important;
-  background:#101112!important;
-}
-.driver-list-photo img{
-  position:absolute!important;
-  left:8%!important;
-  top:-2%!important;
-  width:84%!important;
-  height:110%!important;
-  max-width:none!important;
-  object-fit:contain!important;
-  object-position:center top!important;
   transform:scale(1)!important;
-  transform-origin:center top!important;
-  opacity:1!important;
-  filter:brightness(.97) contrast(1.025) saturate(.98)!important;
-  transition:transform .8s var(--v11-ease),filter .5s ease!important;
+  transition:transform .9s var(--v11c),filter .45s ease!important;
+  filter:brightness(.98) contrast(1.02) saturate(.98)!important;
 }
 @media(hover:hover){
   .driver-list-card:hover .driver-list-photo img{
-    transform:scale(1.035)!important;
+    transform:scale(1.045)!important;
     filter:brightness(1.01) contrast(1.02) saturate(1)!important;
   }
 }
 .driver-list-card:after{
-  background:linear-gradient(
-    180deg,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0) 52%,
-    rgba(0,0,0,.15) 68%,
-    rgba(0,0,0,.86) 100%
-  )!important;
+  background:linear-gradient(180deg,transparent 0 48%,rgba(0,0,0,.08) 62%,rgba(0,0,0,.78) 100%)!important;
 }
 .driver-list-card .team-info{
-  z-index:8!important;
-  left:28px!important;
-  right:28px!important;
-  bottom:24px!important;
+  left:32px!important;
+  right:32px!important;
+  bottom:28px!important;
+  z-index:6!important;
 }
 .driver-list-card .team-name{
-  max-width:86%!important;
-  font-size:clamp(38px,3.7vw,64px)!important;
+  font-size:clamp(48px,5.1vw,88px)!important;
   line-height:.86!important;
+  max-width:90%!important;
   letter-spacing:-.055em!important;
-  white-space:normal!important;
-  text-wrap:balance!important;
-}
-.driver-list-card .team-drivers{
-  margin-top:10px!important;
-  font-size:11px!important;
-  opacity:.84!important;
-}
-.driver-list-card[data-driver="kimi-antonelli"] .team-name,
-.driver-list-card[data-driver="lewis-hamilton"] .team-name,
-.driver-list-card[data-driver="charles-leclerc"] .team-name{
-  font-size:clamp(36px,3.35vw,58px)!important;
-}
-
-/* playful driver accents, but not clutter */
-.driver-list-card:nth-child(4n+1){border-top:6px solid var(--race-yellow)!important}
-.driver-list-card:nth-child(4n+2){border-top:6px solid var(--race-red)!important}
-.driver-list-card:nth-child(4n+3){border-top:6px solid var(--race-blue)!important}
-.driver-list-card:nth-child(4n){border-top:6px solid #fff!important}
-.driver-list-card:before{
-  content:""!important;
-  position:absolute!important;
-  z-index:9!important;
-  left:28px!important;
-  bottom:92px!important;
-  width:0!important;
-  height:4px!important;
-  background:var(--race-yellow)!important;
-  opacity:.9!important;
-  transition:width .5s var(--v11-ease)!important;
-}
-.driver-list-card:hover:before{width:84px!important}
-
-/* ---------- TEAM CARDS ---------- */
-.team-grid{gap:24px!important}
-.team-card{
-  height:clamp(430px,29vw,520px)!important;
-  min-height:0!important;
-  aspect-ratio:auto!important;
-}
-.team-car-stage{inset:14% 4% 24%!important}
-.team-car-cutout{
-  width:100%!important;height:100%!important;
-  object-fit:contain!important;object-position:center!important;
-}
-.team-info{left:28px!important;right:28px!important;bottom:24px!important}
-.team-name{
-  font-size:clamp(46px,4.6vw,78px)!important;
-  line-height:.86!important;
-}
-
-/* ---------- FERRARI: intentionally simple white shield ---------- */
-.team-logo-wrap img[alt="Ferrari logo"],
-.team-card[data-team="Ferrari"] .team-logo-wrap img{
-  width:46px!important;height:56px!important;
-  object-fit:contain!important;
-  filter:none!important;mix-blend-mode:normal!important;
-  opacity:1!important;background:transparent!important;
-  border:0!important;border-radius:0!important;clip-path:none!important;box-shadow:none!important;
-}
-body[data-detail="Ferrari"] .team-hero-logo,
-body[data-detail="ferrari"] .team-hero-logo{
-  width:56px!important;height:68px!important;
-  object-fit:contain!important;
-  filter:none!important;mix-blend-mode:normal!important;
-  opacity:1!important;background:transparent!important;
-  border:0!important;border-radius:0!important;clip-path:none!important;box-shadow:none!important;
-}
-
-/* ---------- TEAM DETAIL ---------- */
-.team-page .team-hero{min-height:400px!important}
-.team-page .team-title-row{
-  display:flex!important;
-  align-items:center!important;
-  gap:18px!important;
-  position:relative!important;
-  z-index:5!important;
-}
-.team-page .team-title-row .page-title{
-  font-size:clamp(64px,7vw,116px)!important;
-}
-.team-page .team-hero p{
-  max-width:850px!important;
-  font-size:clamp(15px,1.2vw,18px)!important;
-  line-height:1.62!important;
-}
-.team-option-card{
-  min-height:200px!important;
-}
-.team-option-card:hover{
-  box-shadow:9px 10px 0 var(--accent,var(--race-red))!important;
-}
-
-/* ---------- LEGENDS / ARCHIVES ---------- */
-.legend-grid{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:0!important;
-}
-.legend-card{
-  min-height:350px!important;
-  padding:30px 32px 28px!important;
-}
-.legend-card h3{
-  font-size:clamp(37px,3.4vw,58px)!important;
-  line-height:.9!important;
-  margin:24px 0 9px!important;
-}
-.legend-card p{font-size:14px!important;line-height:1.56!important}
-.archive-grid{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:18px!important;
-}
-.archive-card{min-height:330px!important;padding:26px!important}
-
-/* ---------- SITE-WIDE PLAYFUL DETAILS ---------- */
-.menu-link:hover{
-  transform:translate3d(10px,0,0) skewX(-3deg)!important;
-}
-.team-info:before{
-  transition:transform .35s var(--v11-ease),box-shadow .35s var(--v11-ease)!important;
-}
-.team-card:hover .team-info:before{
-  transform:rotate(0deg) translateY(-2px)!important;
-  box-shadow:5px 5px 0 #0a0a0a!important;
-}
-.page-head:after{
-  animation:v11Rail 1.05s var(--v11-ease) both!important;
-}
-@keyframes v11Rail{from{width:0}to{width:22%}}
-.stat:hover,.meta:hover{
-  transform:translateY(-3px)!important;
-}
-
-/* ambient track rail */
-.v11-track-rail{
-  position:absolute;
-  left:-10vw;
-  right:-10vw;
-  top:58%;
-  height:2px;
-  background:linear-gradient(90deg,transparent 0 10%,rgba(225,6,0,.1) 10% 30%,rgba(0,0,0,.08) 30% 65%,transparent 65%);
-  transform:rotate(-5deg);
-}
-
-/* ---------- HUD ---------- */
-.fun-hud{
-  right:10px!important;left:auto!important;bottom:8px!important;
-  transform:scale(.68)!important;
-  transform-origin:right bottom!important;
-  opacity:.84!important;
-}
-.fun-hud:hover{transform:scale(.74)!important;opacity:1!important}
-
-/* ---------- MOBILE / TABLET ---------- */
-@media(max-width:980px){
-  .legend-grid,.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  .team-card,.driver-list-card{height:clamp(410px,48vw,500px)!important}
-}
-@media(max-width:700px){
-  .page{
-    padding-top:calc(112px + env(safe-area-inset-top))!important;
-    padding-left:16px!important;
-    padding-right:16px!important;
-  }
-  .page-title{font-size:clamp(52px,16vw,82px)!important}
-  .team-grid,.driver-pair,.legend-grid,.archive-grid,.team-options{
-    grid-template-columns:1fr!important;
-  }
-  .team-card,.driver-list-card{
-    height:clamp(410px,112vw,520px)!important;
-  }
-  .driver-list-photo img{
-    left:6%!important;
-    width:88%!important;
-    height:108%!important;
-    top:0!important;
-  }
-  .driver-list-card .team-name{
-    font-size:clamp(36px,11vw,58px)!important;
-  }
-  .legend-card,.archive-card{min-height:auto!important}
-  .fun-hud{right:6px!important;bottom:6px!important;transform:scale(.6)!important}
-}
-@media(max-height:520px) and (orientation:landscape){
-  .team-card,.driver-list-card{height:360px!important}
-  .page{padding-top:88px!important}
-}
-@media(prefers-reduced-motion:reduce){
-  .v11-reveal,.page-title,.page-head:after{animation-duration:.01ms!important;animation-delay:0ms!important}
-}
-
-/* =========================================================
-   THE GRID — V11+
-   restore face cards + full driver profiles + whole-site polish
-   ========================================================= */
-
-:root{
-  --v11p:cubic-bezier(.16,1,.3,1);
-  --v11p-soft:cubic-bezier(.22,.61,.36,1);
-}
-
-/* ---------- CLEAN GLOBAL RHYTHM ---------- */
-.page{
-  padding-top:clamp(142px,9.5vw,170px)!important;
-}
-.page-head{
-  margin-bottom:34px!important;
-  padding-bottom:20px!important;
-}
-.page-title{
-  margin:0!important;
-  top:auto!important;
-  transform:none!important;
-  font-size:clamp(68px,7.8vw,128px)!important;
-  line-height:.8!important;
-  letter-spacing:-.065em!important;
-}
-
-/* ---------- CINEMATIC ENTER: immediate, soft, no sluggishness ---------- */
-.v11p-enter{
-  animation:v11pEnter .52s var(--v11p) both!important;
-  animation-delay:calc(var(--v11p-i,0) * 10ms)!important;
-}
-@keyframes v11pEnter{
-  from{opacity:0;transform:translate3d(0,14px,0) scale(.996)}
-  to{opacity:1;transform:none}
-}
-.page-title{animation:v11pTitle .68s var(--v11p) both!important}
-@keyframes v11pTitle{
-  from{opacity:0;transform:translate3d(-28px,0,0) skewX(-1.5deg)}
-  to{opacity:1;transform:none}
-}
-
-/* ---------- SIGNATURE PAGE PULL: smoother / lighter / cinematic ---------- */
-#pagePullShell.page-pull-out{
-  animation:v11pPullOut .72s var(--v11p-soft) both!important;
-}
-#pagePullShell.page-pull-in{
-  animation:v11pPullIn .58s var(--v11p) both!important;
-}
-@keyframes v11pPullOut{
-  0%{transform:translate3d(0,0,0)}
-  34%{transform:translate3d(4vw,0,0)}
-  100%{transform:translate3d(104vw,0,0)}
-}
-@keyframes v11pPullIn{
-  from{transform:translate3d(-104vw,0,0)}
-  to{transform:translate3d(0,0,0)}
-}
-.heavy-mode.car-mode .race-pull-car{
-  animation:v11pCar .98s var(--v11p-soft) both!important;
-}
-@keyframes v11pCar{
-  from{left:0;transform:translate3d(-74vw,2px,0) scale(.98)}
-  48%{transform:translate3d(18vw,-3px,0) scale(1)}
-  to{left:0;transform:translate3d(112vw,0,0) scale(1)}
-}
-.heavy-mode.wheel-mode .race-pull-wheel{
-  animation:v11pWheel .98s var(--v11p-soft) both!important;
-}
-@keyframes v11pWheel{
-  from{left:0;transform:translate3d(-52vw,0,0) rotate(0deg)}
-  to{left:0;transform:translate3d(112vw,0,0) rotate(920deg)}
-}
-
-/* =========================================================
-   DRIVERS GRID — RETURN TO FACE / UPPER-BODY PHOTO CARDS
-   ========================================================= */
-.driver-list-card{
-  height:clamp(440px,28vw,500px)!important;
-  min-height:0!important;
-  aspect-ratio:auto!important;
-  overflow:hidden!important;
-  background:#101112!important;
-  border-radius:0 24px 0 0!important;
-}
-.driver-list-photo{
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  overflow:hidden!important;
-  background:#101112!important;
-}
-.driver-list-photo img{
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  object-fit:contain!important;
-  object-position:center top!important;
-  transform:scale(2.18)!important;
-  transform-origin:50% 16%!important;
-  opacity:1!important;
-  filter:brightness(.98) contrast(1.025) saturate(.98)!important;
-  transition:transform .85s var(--v11p),filter .45s ease!important;
-}
-.driver-list-card:hover .driver-list-photo img{
-  transform:scale(2.26)!important;
-  filter:brightness(1.02) contrast(1.02) saturate(1)!important;
-}
-.driver-list-card:after{
-  background:linear-gradient(
-    180deg,
-    rgba(0,0,0,.02) 0%,
-    rgba(0,0,0,0) 42%,
-    rgba(0,0,0,.12) 61%,
-    rgba(0,0,0,.84) 100%
-  )!important;
-}
-.driver-list-card .team-info{
-  z-index:8!important;
-  left:28px!important;
-  right:28px!important;
-  bottom:24px!important;
-}
-.driver-list-card .team-name{
-  max-width:88%!important;
-  font-size:clamp(38px,3.5vw,60px)!important;
-  line-height:.86!important;
-  letter-spacing:-.055em!important;
-  white-space:normal!important;
-  text-wrap:balance!important;
 }
 .driver-list-card .team-drivers{
   margin-top:9px!important;
   font-size:11px!important;
-  opacity:.84!important;
-}
-.driver-list-card[data-driver="kimi-antonelli"] .team-name,
-.driver-list-card[data-driver="lewis-hamilton"] .team-name,
-.driver-list-card[data-driver="charles-leclerc"] .team-name{
-  font-size:clamp(35px,3.15vw,54px)!important;
+  opacity:.86!important;
 }
 
-/* Different playful top rail per card, but still premium */
-.driver-list-card:nth-child(4n+1){border-top:5px solid var(--race-yellow)!important}
-.driver-list-card:nth-child(4n+2){border-top:5px solid var(--race-red)!important}
-.driver-list-card:nth-child(4n+3){border-top:5px solid var(--race-blue)!important}
-.driver-list-card:nth-child(4n){border-top:5px solid rgba(255,255,255,.9)!important}
-
-/* =========================================================
-   DRIVER DETAIL — FULL DRIVER VISIBLE, FACE NEVER CUT OFF
-   ========================================================= */
+/* ---------- DRIVER DETAIL: FULL BODY LEFT, HEAD NEVER CUT ---------- */
 .profile{
+  grid-template-columns:48% 52%!important;
   min-height:100vh!important;
-  padding-top:92px!important;
-  grid-template-columns:46% 54%!important;
-  background:var(--paper)!important;
 }
 .profile-visual{
-  position:relative!important;
-  min-height:calc(100vh - 92px)!important;
-  height:calc(100vh - 92px)!important;
+  min-height:100vh!important;
+  height:100vh!important;
   overflow:hidden!important;
   background:var(--paper2)!important;
 }
 .profile-visual img{
   position:absolute!important;
-  inset:0!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  top:92px!important;
   width:100%!important;
-  height:100%!important;
+  height:calc(100% - 92px)!important;
   object-fit:contain!important;
   object-position:center bottom!important;
   mix-blend-mode:multiply!important;
-  transform:none!important;
-  animation:v11pProfile .9s var(--v11p) both!important;
+  transform:scale(1.04)!important;
+  transform-origin:center bottom!important;
+  animation:v11cProfile 1.05s var(--v11c) both!important;
 }
-@keyframes v11pProfile{
-  from{opacity:.42;transform:scale(1.035)}
-  to{opacity:1;transform:scale(1)}
-}
-.profile-number{
-  left:24px!important;
-  bottom:10px!important;
-  opacity:.14!important;
-}
-.back{
-  top:24px!important;
-  left:32px!important;
-  background:#0a0a0a!important;
-  color:#fff!important;
-  padding:10px 13px!important;
+@keyframes v11cProfile{
+  from{opacity:.35;transform:scale(1.09) translateY(14px)}
+  to{opacity:1;transform:scale(1.04) translateY(0)}
 }
 .profile-content{
-  padding:72px 6vw 8vh 6vw!important;
+  padding:122px 6vw 8vh 6vw!important;
 }
 .profile-name{
-  font-size:clamp(66px,7.4vw,122px)!important;
-  line-height:.8!important;
+  font-size:clamp(68px,8vw,130px)!important;
+  line-height:.79!important;
   margin-bottom:24px!important;
 }
 .profile-intro{
   max-width:620px!important;
-  font-size:15px!important;
-  line-height:1.72!important;
+  line-height:1.75!important;
+}
+.back{
+  top:108px!important;
+  left:4vw!important;
 }
 
-/* ---------- WHOLE-SITE CARD MOTION ---------- */
+/* ---------- GLOBAL PREMIUM / PLAYFUL WITHOUT MAKING IT HEAVY ---------- */
+.v11c-reveal{
+  animation:v11cReveal .52s var(--v11c) both!important;
+  animation-delay:calc(var(--v11c-i,0) * 10ms)!important;
+}
+@keyframes v11cReveal{
+  from{opacity:0;transform:translate3d(0,14px,0) scale(.996)}
+  to{opacity:1;transform:none}
+}
+.page-title{
+  animation:v11cTitle .68s var(--v11c) both!important;
+}
+@keyframes v11cTitle{
+  from{opacity:0;transform:translate3d(-28px,0,0) skewX(-1.5deg)}
+  to{opacity:1;transform:none}
+}
 .team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card{
-  transform:
-    perspective(1200px)
-    translate3d(var(--mx,0),var(--my,0),0)
-    rotateX(var(--rx,0deg))
-    rotateY(var(--ry,0deg))!important;
-  transition:
-    transform .46s var(--v11p),
-    box-shadow .46s var(--v11p),
-    filter .32s ease!important;
+  transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))!important;
+  transition:transform .46s var(--v11c),box-shadow .46s var(--v11c)!important;
 }
 @media(hover:hover){
   .team-card:hover,.driver-list-card:hover,.legend-card:hover,.archive-card:hover,.team-option-card:hover{
-    transform:
-      perspective(1200px)
-      translate3d(var(--mx,0),calc(var(--my,0) - 6px),0)
-      rotateX(var(--rx,0deg))
-      rotateY(var(--ry,0deg))!important;
-    box-shadow:11px 13px 0 #0a0a0a!important;
+    transform:perspective(1200px) translateY(-6px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))!important;
+    box-shadow:11px 13px 0 #090909!important;
   }
 }
+.menu-link{
+  transition:transform .34s var(--v11c),background-color .24s ease,padding .34s var(--v11c)!important;
+}
+.menu-link:hover{
+  transform:translateX(9px) skewX(-2deg)!important;
+}
+.stat,.meta{
+  transition:transform .34s var(--v11c),background .3s ease!important;
+}
+.stat:hover,.meta:hover{transform:translateY(-3px)!important}
 
-/* ---------- TEAM CARDS ---------- */
-.team-card{
-  height:clamp(425px,28vw,510px)!important;
-  min-height:0!important;
-  aspect-ratio:auto!important;
+/* ---------- CINEMATIC TRANSITIONS, LIGHTER AND SMOOTHER ---------- */
+#pagePullShell.page-pull-out{
+  animation:v11cPullOut .72s var(--v11c-soft) both!important;
 }
-.team-car-stage{inset:14% 4% 24%!important}
-.team-car-cutout{
-  width:100%!important;
-  height:100%!important;
-  object-fit:contain!important;
-  object-position:center!important;
+#pagePullShell.page-pull-in{
+  animation:v11cPullIn .58s var(--v11c) both!important;
 }
-.team-name{
-  font-size:clamp(44px,4.4vw,74px)!important;
-  line-height:.86!important;
+@keyframes v11cPullOut{
+  0%{transform:translate3d(0,0,0)}
+  34%{transform:translate3d(4vw,0,0)}
+  100%{transform:translate3d(104vw,0,0)}
+}
+@keyframes v11cPullIn{
+  from{transform:translate3d(-104vw,0,0)}
+  to{transform:translate3d(0,0,0)}
+}
+.heavy-mode.car-mode .race-pull-car{
+  animation:v11cCar .98s var(--v11c-soft) both!important;
+}
+@keyframes v11cCar{
+  from{left:0;transform:translate3d(-74vw,2px,0) scale(.98)}
+  48%{transform:translate3d(18vw,-3px,0) scale(1)}
+  to{left:0;transform:translate3d(112vw,0,0) scale(1)}
+}
+.heavy-mode.wheel-mode .race-pull-wheel{
+  animation:v11cWheel .98s var(--v11c-soft) both!important;
+}
+@keyframes v11cWheel{
+  from{left:0;transform:translate3d(-52vw,0,0) rotate(0)}
+  to{left:0;transform:translate3d(112vw,0,0) rotate(920deg)}
 }
 
-/* ---------- FERRARI: clean white badge, no broken crest attempts ---------- */
-.team-logo-wrap img[alt="Ferrari logo"],
-.team-card[data-team="Ferrari"] .team-logo-wrap img{
-  width:45px!important;
-  height:55px!important;
+/* ---------- FERRARI: SIMPLE WHITE SHIELD ---------- */
+.team-logo-wrap img[alt="Ferrari logo"]{
+  width:48px!important;height:58px!important;
   object-fit:contain!important;
-  filter:none!important;
-  mix-blend-mode:normal!important;
-  opacity:1!important;
-  background:transparent!important;
-  border:0!important;
-  border-radius:0!important;
-  clip-path:none!important;
-  box-shadow:none!important;
+  filter:none!important;mix-blend-mode:normal!important;
+  opacity:1!important;background:transparent!important;
+  border:0!important;border-radius:0!important;clip-path:none!important;box-shadow:none!important;
 }
 body[data-detail="Ferrari"] .team-hero-logo,
 body[data-detail="ferrari"] .team-hero-logo{
-  width:55px!important;
-  height:67px!important;
+  width:58px!important;height:70px!important;
   object-fit:contain!important;
-  filter:none!important;
-  mix-blend-mode:normal!important;
-  opacity:1!important;
-  background:transparent!important;
-  border:0!important;
-  border-radius:0!important;
-  clip-path:none!important;
-  box-shadow:none!important;
+  filter:none!important;mix-blend-mode:normal!important;
+  opacity:1!important;background:transparent!important;
+  border:0!important;border-radius:0!important;clip-path:none!important;box-shadow:none!important;
 }
 
-/* ---------- TEAM DETAIL ---------- */
-.team-page .team-hero{min-height:390px!important}
-.team-page .team-title-row{
-  display:flex!important;
-  align-items:center!important;
-  gap:18px!important;
-  z-index:5!important;
-}
-.team-page .team-title-row .page-title{
-  font-size:clamp(62px,6.8vw,112px)!important;
-}
-.team-page .team-hero p{
-  max-width:820px!important;
-  font-size:clamp(15px,1.2vw,18px)!important;
-  line-height:1.62!important;
-}
-
-/* ---------- LEGENDS / ARCHIVE ---------- */
-.legend-grid{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:0!important;
-}
-.legend-card{
-  min-height:342px!important;
-  padding:28px 30px 26px!important;
-}
-.legend-card h3{
-  font-size:clamp(36px,3.25vw,55px)!important;
-  line-height:.9!important;
-}
-.archive-grid{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:18px!important;
-}
-.archive-card{
-  min-height:325px!important;
-  padding:25px!important;
-}
-
-/* ---------- PLAYFUL SITE-WIDE DETAILS ---------- */
-.menu-link:hover{
-  transform:translate3d(9px,0,0) skewX(-2deg)!important;
-}
-.team-card:hover .team-info:before{
-  transform:translateY(-2px) rotate(0deg)!important;
-  box-shadow:5px 5px 0 #080808!important;
-}
-.page-head:after{
-  animation:v11pRail 1s var(--v11p) both!important;
-}
-@keyframes v11pRail{from{width:0}to{width:22%}}
-.stat,.meta{
-  transition:transform .35s var(--v11p),background .35s ease!important;
-}
-.stat:hover,.meta:hover{
-  transform:translateY(-3px)!important;
-}
-
-/* ---------- HUD ---------- */
+/* ---------- HUD SMALLER ---------- */
 .fun-hud{
-  right:8px!important;
-  left:auto!important;
-  bottom:7px!important;
+  right:8px!important;left:auto!important;bottom:7px!important;
   transform:scale(.64)!important;
   transform-origin:right bottom!important;
   opacity:.82!important;
 }
-.fun-hud:hover{
-  transform:scale(.7)!important;
-  opacity:1!important;
-}
+.fun-hud:hover{transform:scale(.7)!important;opacity:1!important}
 
 /* ---------- UNIVERSAL ---------- */
-@media(max-width:980px){
-  .profile{grid-template-columns:45% 55%!important}
-  .legend-grid,.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  .team-card,.driver-list-card{height:clamp(405px,47vw,490px)!important}
-}
-@media(max-width:700px){
-  .page{
-    padding-top:calc(108px + env(safe-area-inset-top))!important;
-    padding-left:16px!important;
-    padding-right:16px!important;
-  }
-  .page-title{font-size:clamp(50px,16vw,80px)!important}
-  .team-grid,.driver-pair,.legend-grid,.archive-grid,.team-options{
-    grid-template-columns:1fr!important;
-  }
-  .driver-list-card{
-    height:clamp(400px,110vw,510px)!important;
-  }
-  .driver-list-photo img{
-    transform:scale(2.0)!important;
-    transform-origin:50% 14%!important;
-  }
-  .driver-list-card:hover .driver-list-photo img{transform:scale(2.0)!important}
+@media(max-width:800px){
   .profile{
     display:block!important;
-    padding-top:78px!important;
+    min-height:auto!important;
   }
   .profile-visual{
     height:62vh!important;
     min-height:440px!important;
   }
   .profile-visual img{
-    object-fit:contain!important;
-    object-position:center bottom!important;
+    top:72px!important;
+    height:calc(100% - 72px)!important;
+    transform:scale(1.02)!important;
   }
   .profile-content{
-    padding:42px 20px 60px!important;
+    padding:44px 20px 60px!important;
   }
   .profile-name{
     font-size:clamp(54px,17vw,86px)!important;
   }
   .back{
-    top:14px!important;
-    left:14px!important;
+    top:84px!important;
+    left:16px!important;
   }
-  .legend-card,.archive-card{min-height:auto!important}
-  .fun-hud{right:5px!important;bottom:5px!important;transform:scale(.58)!important}
+  .driver-list-card{
+    min-height:clamp(430px,110vw,540px)!important;
+  }
+  .driver-list-card .driver-list-photo img{
+    object-position:center 14%!important;
+  }
+  .fun-hud{
+    right:5px!important;bottom:5px!important;transform:scale(.58)!important;
+  }
 }
 @media(max-height:520px) and (orientation:landscape){
-  .profile{padding-top:58px!important}
-  .profile-visual{height:calc(100vh - 58px)!important;min-height:0!important}
-  .team-card,.driver-list-card{height:350px!important}
+  .profile-visual{
+    height:calc(100vh - 58px)!important;
+    min-height:0!important;
+  }
+  .profile-visual img{
+    top:58px!important;
+    height:calc(100% - 58px)!important;
+  }
 }
 @media(prefers-reduced-motion:reduce){
-  .v11p-enter,.page-title,.page-head:after,.profile-visual img{
+  .v11c-reveal,.page-title,.profile-visual img{
     animation-duration:.01ms!important;
     animation-delay:0ms!important;
   }

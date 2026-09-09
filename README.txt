@@ -17,84 +17,10 @@ ADDED / IMPROVED
 Sound remains OFF by default.
 Timing Mode is intentionally hidden on narrow phones to keep the HUD uncluttered.
 
-V10.1 PATCH
-- Fixed Ferrari identity on the team grid and Ferrari detail page.
-- Fixed driver photos appearing almost black; the images were loading but V10 styling obscured them.
-- Preserved all V10 routing, transitions, sound, Timing Mode and universal responsive work.
-- Added cache-busting for GitHub Pages.
-
-V10.2 SCREENSHOT + CURRENT-GRID AUDIT
-- Rechecked the screenshots supplied after V10.
-- Improved Ferrari identity sizing and removed dependence on the generic shield presentation.
-- Driver photography now renders at normal brightness with a bottom-only readability gradient.
-- Long driver names are constrained so they cannot collide with card edges.
-- Ferrari hero body copy and small metadata have stronger contrast.
-- Added graceful visual fallbacks for future broken remote image URLs.
-- Corrected current 2026 Red Bull/Racing Bulls driver pairing where stale records were found.
-- Preserved V10's routing, Race Mode, Timing Mode, sound, transitions and universal responsive system.
-
-V10.3 FERRARI LOGO PATCH
-- Replaced the Ferrari wordmark with a Ferrari shield/badge image.
-- Applied globally through the shared Ferrari logo mapping.
-- Ferrari now uses shield proportions on the Teams grid and Ferrari detail page.
-- Kept all V10.2 routing, animations, sound, Timing Mode, driver photo fixes and universal responsive behavior.
-
-V10.4 FERRARI CREST CLEANUP
-- Removed the artificial clip-path and border treatment that made Ferrari's badge look chunky/weird.
-- Uses the actual shield image at natural proportions.
-- Reduced crest size on cards and team hero so it feels integrated instead of oversized.
-- Added multiply blending on Ferrari red to visually suppress the JPG background edge.
-- Kept all V10.3 routing, driver-image, sound, Timing Mode, transition and universal fixes.
-
-V10.5 CLEANEST V10
-- Rebuilt Ferrari shield as a local transparent asset so the red plate/background is gone.
-- Fixed Teams heading clipping beneath the fixed header.
-- Re-proportioned team cards and car stages.
-- Reworked driver cards so portrait framing starts at the top and names stay controlled.
-- Compact 3-column Legends layout with no giant empty spaces.
-- Standardized Archive card dimensions.
-- Moved Race Mode HUD to bottom-right so it stops covering card copy.
-- Cleaned team-detail option card proportions.
-- Retained V10 animations, sound, Timing Mode, routing and universal phone/tablet support.
-
-V10.6 BEST/CLEANEST FINAL
-- Embedded Ferrari shield directly in app.js as a data URI: no assets-folder dependency.
-- Tightened driver cards and enlarged/cropped portraits so faces and torsos are proportionate.
-- Reduced long driver-name sizing and protected text against card-edge collisions.
-- Rebalanced team cards, car placement, logos and names.
-- Fixed fixed-header/title clipping with stronger page top spacing.
-- Removed stray decorative/transition text from team-title stacking contexts.
-- Tightened Legends and Archive card rhythm.
-- Shrunk/moved Race Mode HUD so it cannot cover primary content.
-- Preserved V10 navigation, transitions, sound, Timing Mode and universal responsiveness.
-
-V10.7 FINAL POLISH
-- Restored Ferrari to the clean white shield treatment requested by the user.
-- Rebuilt driver-card proportions: no manual 114–120% crop, no cut-off faces, tighter card height, controlled name sizing.
-- Rebalanced team cards, car placement, team names and metadata.
-- Refined driver-detail image framing.
-- Standardized Legends and Archive proportions.
-- Cleaned Ferrari/team-detail title row and body proportions.
-- Shrunk Race Mode HUD further so it cannot cover primary content.
-- Added playful driver-card accent rails, kinetic hover line and smoother lift animation.
-- Retained V10 routing, cinematic page pulls, optional sound, Timing Mode and universal iOS/Android/tablet behavior.
-
-V11
-- Returned Drivers to the original V10 overlay-card concept.
-- Reframed driver portraits to a larger contained crop so faces are visible without shrinking drivers into tiny full-body figures.
-- Kept names over the card with a cleaner bottom gradient and controlled sizing.
-- Ferrari intentionally stays on the simple white shield.
-- Smoothed and lightened signature car/wheel transitions.
-- Added subtle 3D hover, cinematic reveals, animated header rails, team-chip motion, archive/legend lift, and menu motion across the whole site.
-- Reduced Race Mode HUD further.
-- Preserved V10 routing, optional sound, Timing Mode, iOS/Android/tablet responsiveness.
-
-V11+
-- Driver grid restored to face / upper-body cards using aggressive top-centered portrait crop.
-- Driver profile fixed so the full driver is visible and the face cannot sit behind the fixed header.
-- Profile now uses contained full-body photography, proper top offset, smaller content title and cleaner spacing.
-- Page pulls softened and made more cinematic without becoming heavy.
-- Site-wide subtle 3D hover, reveal motion, menu motion, team-chip movement, stats lift and archive/legend polish.
-- Ferrari remains the simple white shield treatment.
-- Race Mode HUD reduced further.
-- Universal desktop/tablet/iPhone/Android/landscape support retained.
+V11+ CORRECTED
+- Drivers grid restored directly from the V10 codebase.
+- Driver cards keep V10 face/upper-body photography and overlay names.
+- Driver detail keeps the left-side full-body concept, but the image starts below the fixed header so the head cannot be cut off.
+- Added only lightweight whole-site playful/cinematic polish; no driver-page redesign.
+- Ferrari kept as simple white shield.
+- Universal desktop/tablet/iPhone/Android behavior preserved.

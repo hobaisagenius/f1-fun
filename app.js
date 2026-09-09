@@ -121,7 +121,7 @@ function teamsPage(){
 
 function teamPage(team){
  const ids=TEAMS[team], s=TEAM_STATS[team];
- app.innerHTML=`<section class="page team-page" style="--team-accent:${TEAM_COLORS[team]}"><button class="back" id="backTeams">← All teams</button><div class="team-hero"><div><div class="page-kicker">TEAM / 2026</div><div class="team-title-row"><img class="team-hero-logo" src="${teamLogo(team)}" alt="${team} logo"><h1 class="page-title">${team}</h1></div><p class="team-lede">${s.history}</p></div><div class="team-identity"><span>FIRST ENTRY</span><strong>${s.first}</strong><span>BASE</span><strong>${s.base}</strong></div></div>
+ app.innerHTML=`<section class="page team-page" style="--team-accent:${TEAM_COLORS[team]}"><button class="back" id="backTeams">← All teams</button><div class="team-hero"><div><div class="page-kicker">TEAM / 2026</div><div class="team-title-row"><img class="team-hero-logo" src="${teamLogo(team)}" onerror="this.style.display='none'"><h1 class="page-title">${team}</h1></div><p class="team-lede">${s.history}</p></div><div class="team-identity"><span>FIRST ENTRY</span><strong>${s.first}</strong><span>BASE</span><strong>${s.base}</strong></div></div>
  <div class="team-options"><button data-view="history"><b>01</b><span>Team history</span><small>Origins · titles · legacy ↗︎</small></button><button data-view="drivers"><b>02</b><span>Drivers</span><small>${ids.map(x=>dBy(x).name).join(' · ')} ↗︎</small></button><button data-view="season"><b>03</b><span>2026 season</span><small>Wins · podiums · poles · points ↗︎</small></button></div>
  <div id="teamDetail"></div></section>`;
  document.getElementById('backTeams').onclick=()=>go('teams');
@@ -139,7 +139,7 @@ function showTeamView(team,view){
 }
 
 function driversPage(){
- app.innerHTML=`<section class="page"><div class="page-head"><h2 class="page-title">Drivers</h2><div class="page-note">22 PEOPLE<br>ONE GRID</div></div><div class="team-grid">${DRIVERS.map(d=>`<button class="team-card driver-list-card" data-driver="${d.id}"><div class="driver-list-photo"><img src="${photo(d)}" alt="${d.name}"></div><div class="team-info"><div class="team-name">${d.name}</div><div class="team-drivers">${d.team} · #${d.number}</div></div></button>`).join('')}</div></section>`;
+ app.innerHTML=`<section class="page"><div class="page-head"><h2 class="page-title">Drivers</h2><div class="page-note">22 PEOPLE<br>ONE GRID</div></div><div class="team-grid">${DRIVERS.map(d=>`<button class="team-card driver-list-card" data-driver="${d.id}"><div class="driver-list-photo"><img src="${photo(d)}" alt="${d.name}" onerror="this.style.opacity=.2"></div><div class="team-info"><div class="team-name">${d.name}</div><div class="team-drivers">${d.team} · #${d.number}</div></div></button>`).join('')}</div></section>`;
  document.querySelectorAll('[data-driver]').forEach(c=>c.onclick=()=>go('driver',c.dataset.driver));
 }
 
@@ -148,7 +148,7 @@ const LEGEND_CHAMPIONSHIPS = {"senna": [1988, 1990, 1991], "schumacher": [1994, 
 
 function driverPage(id){
  const d=dBy(id), s=d.stats, team=Object.entries(TEAMS).find(([,ids])=>ids.includes(id))?.[0]||d.team;
- app.innerHTML=`<section class="profile"><div class="profile-visual"><button class="back" id="backTeam">← ${team}</button><img src="${photo(d)}" alt="${d.name}"><div class="profile-number">${d.number}</div></div><article class="profile-content"><div class="profile-kicker">${d.team.toUpperCase()} · DRIVER #${d.number}</div><h1 class="profile-name">${d.first}<br><em>${d.last}</em></h1><p class="profile-intro">${d.bio}</p>
+ app.innerHTML=`<section class="profile"><div class="profile-visual"><button class="back" id="backTeam">← ${team}</button><img src="${photo(d)}" alt="${d.name}" onerror="this.style.opacity=.18"><div class="profile-number">${d.number}</div></div><article class="profile-content"><div class="profile-kicker">${d.team.toUpperCase()} · DRIVER #${d.number}</div><h1 class="profile-name">${d.first}<br><em>${d.last}</em></h1><p class="profile-intro">${d.bio}</p>
  <div class="meta-grid"><div class="meta"><label>DATE OF BIRTH</label><strong>${d.dob}</strong></div><div class="meta"><label>F1 DEBUT</label><strong>${d.debut}</strong></div><div class="meta"><label>NATIONALITY</label><strong>${d.nationality}</strong></div><div class="meta"><label>CURRENT TEAM</label><strong>${d.team}</strong></div><div class="meta"><label>CAR NUMBER</label><strong>#${d.number}</strong></div><div class="meta"><label>F1 TEAMS</label><strong>${d.route}</strong></div></div>
  <section class="career-stats"><div class="section-label">CAREER RECORD</div><div class="stats-grid"><div><span>GRANDS PRIX</span><strong>${s.starts}</strong></div><div><span>WINS</span><strong>${s.wins}</strong></div><div><span>PODIUMS</span><strong>${s.podiums}</strong></div><div><span>POLE POSITIONS</span><strong>${s.poles}</strong></div><div><span>WORLD CHAMPIONSHIPS</span><strong>${s.titles}</strong></div><div><span>CAREER POINTS</span><strong>${s.points}</strong></div><div><span>HIGHEST FINISH</span><strong>${s.best}</strong></div><div><span>DNFs</span><strong>${s.dnfs}</strong></div></div></section>
  <section class="career-stats season-mini"><div class="section-label">2026 SO FAR</div><div class="stats-grid"><div><span>POSITION</span><strong>${seasonPosition(d)}</strong></div><div><span>POINTS</span><strong>${seasonPoints(d)}</strong></div><div><span>RACE WINS</span><strong>${seasonWins(d)}</strong></div><div><span>RACE PODIUMS</span><strong>${seasonPodiums(d)}</strong></div><div><span>POLES</span><strong>${seasonPoles(d)}</strong></div><div><span>DNFs</span><strong>${seasonDnfs(d)}</strong></div></div></section>
@@ -540,89 +540,34 @@ sectionChoreo();
  }).observe(pull,{attributes:true,attributeFilter:['class']});
 })();
 
-/* V10.2 resilient visual-asset fallback */
-document.addEventListener('error',function(e){
- const img=e.target;
- if(!(img instanceof HTMLImageElement) || img.classList.contains('asset-failed')) return;
- img.classList.add('asset-failed');
- const host=img.parentElement;
- if(!host || host.querySelector('.asset-fallback')) return;
- const label=(img.alt||'THE GRID').replace(/\s+(portrait|photo|logo|car).*$/i,'').trim();
- const fallback=document.createElement('span');
- fallback.className='asset-fallback';
- fallback.textContent=label||'THE GRID';
- host.style.position=host.style.position||'relative';
- host.appendChild(fallback);
-},true);
-
-/* V11 — lightweight playful system */
-(function(){
-  const appRoot=document.getElementById('app');
-  if(!appRoot)return;
-
-  function prep(){
-    requestAnimationFrame(()=>{
-      appRoot.querySelectorAll('.team-card,.driver-list-card,.archive-card,.legend-card,.team-option-card,.stat,.meta').forEach((el,i)=>{
-        el.classList.add('v11-reveal');
-        el.style.setProperty('--v11i',Math.min(i,10));
-      });
-    });
-  }
-  new MutationObserver(prep).observe(appRoot,{childList:true,subtree:false});
-  prep();
-
-  if(matchMedia('(hover:hover) and (pointer:fine)').matches){
-    document.addEventListener('pointermove',e=>{
-      const card=e.target.closest('.team-card,.driver-list-card,.archive-card,.legend-card,.team-option-card');
-      if(!card)return;
-      const r=card.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-.5;
-      const y=(e.clientY-r.top)/r.height-.5;
-      card.style.setProperty('--v11rx',`${(-y*1.1).toFixed(2)}deg`);
-      card.style.setProperty('--v11ry',`${(x*1.5).toFixed(2)}deg`);
-    },{passive:true});
-    document.addEventListener('pointerout',e=>{
-      const card=e.target.closest?.('.team-card,.driver-list-card,.archive-card,.legend-card,.team-option-card');
-      if(card){
-        card.style.removeProperty('--v11rx');
-        card.style.removeProperty('--v11ry');
-      }
-    });
-  }
-})();
-
-/* V11+ site-wide premium/playful micro-interactions */
+/* V11+ corrected — site-wide lightweight premium/playful motion */
 (function(){
   const root=document.getElementById('app');
   if(!root)return;
-
-  function arm(){
+  function reveal(){
     requestAnimationFrame(()=>{
-      root.querySelectorAll('.team-card,.driver-list-card,.driver-card,.legend-card,.archive-card,.team-option-card,.stat,.meta').forEach((el,i)=>{
-        el.classList.add('v11p-enter');
-        el.style.setProperty('--v11p-i',Math.min(i,10));
+      root.querySelectorAll('.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card,.stat,.meta').forEach((el,i)=>{
+        el.classList.add('v11c-reveal');
+        el.style.setProperty('--v11c-i',Math.min(i,10));
       });
     });
   }
-  new MutationObserver(arm).observe(root,{childList:true,subtree:false});
-  arm();
+  new MutationObserver(reveal).observe(root,{childList:true,subtree:false});
+  reveal();
 
   if(matchMedia('(hover:hover) and (pointer:fine)').matches){
     document.addEventListener('pointermove',e=>{
       const el=e.target.closest('.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card');
       if(!el)return;
       const r=el.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-      el.style.setProperty('--mx',`${(x*3.5).toFixed(2)}px`);
-      el.style.setProperty('--my',`${(y*2.5).toFixed(2)}px`);
-      el.style.setProperty('--rx',`${(-y*.7).toFixed(2)}deg`);
-      el.style.setProperty('--ry',`${(x*1.0).toFixed(2)}deg`);
+      const x=(e.clientX-r.left)/r.width-.5;
+      const y=(e.clientY-r.top)/r.height-.5;
+      el.style.setProperty('--rx',`${(-y*.55).toFixed(2)}deg`);
+      el.style.setProperty('--ry',`${(x*.8).toFixed(2)}deg`);
     },{passive:true});
     document.addEventListener('pointerout',e=>{
       const el=e.target.closest?.('.team-card,.driver-list-card,.legend-card,.archive-card,.team-option-card');
-      if(el){
-        ['--mx','--my','--rx','--ry'].forEach(p=>el.style.removeProperty(p));
-      }
+      if(el){el.style.removeProperty('--rx');el.style.removeProperty('--ry')}
     });
   }
 })();
